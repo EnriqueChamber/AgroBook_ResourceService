@@ -1,6 +1,7 @@
 package es.agrobook.api.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,20 +20,18 @@ public class UsuarioService implements UserDetailsService{
     private UsuarioRepository usuarioRepository;
 
     public List<Usuario> obtenerTodosUsuarios() {
-        /*return StreamSupport.stream(usuarioRepository.findAll().spliterator(), false)
-        	    .collect(Collectors.toList());*/
     	return usuarioRepository.findAll();
     }
     
     public Usuario buscaKike() {
-    	Usuario resUsuario = usuarioRepository.retrieveByName("enrique_chamber");
+    	Usuario resUsuario = usuarioRepository.findByUsername("enrique_chamber");
     	System.out.println("UsuarioRepository.retrieveByName(\"enrique_chamber\") returns: " + resUsuario);
         return resUsuario;
     }
 
     @Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usuario = usuarioRepository.retrieveByName(username);
+		Usuario usuario = usuarioRepository.findByUsername(username);
 		if(usuario == null)
 			throw new UsernameNotFoundException(username);
 		return usuario;

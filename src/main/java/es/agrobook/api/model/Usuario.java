@@ -1,6 +1,8 @@
 package es.agrobook.api.model;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -8,8 +10,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -47,6 +51,10 @@ public class Usuario implements UserDetails{
     @OneToMany(mappedBy = "usuario")
     @JsonIgnore
     private Set<ExplotacionUsuario> explotacionesUsuarios;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
+    @JsonIgnore
+    private Set<Authority> authorities;	
 	
 	// CONSTRUCTORS
 	
@@ -207,8 +215,7 @@ public class Usuario implements UserDetails{
 	// INICIO UserDetails methods
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		return authorities;
 	}
 
 	@Override
