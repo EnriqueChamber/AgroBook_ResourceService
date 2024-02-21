@@ -1,46 +1,37 @@
 package es.agrobook.api.configuration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+
+import org.springframework.context.annotation.*;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
-	
+
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        
         http.cors(Customizer.withDefaults())
-            .authorizeHttpRequests((authz) -> authz
+            .authorizeHttpRequests(auth -> auth
                 .anyRequest().authenticated()
-            )
-			.httpBasic(Customizer.withDefaults())
-			.formLogin(Customizer.withDefaults());
+            ).formLogin(conf -> conf
+                //.loginPage("/login")
+                .loginProcessingUrl("/generate-token")
+                //.defaultSuccessUrl("/")
+                //.failureUrl("/login")
+            );
+            /*.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .oauth2Client(Customizer.withDefaults())
+			.formLogin(Customizer.withDefaults());*/
         return http.build();
     }
 
-    
-    /*@Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/ignore1", "/ignore2");
-    }*/
-
 	@Bean
-	public PasswordEncoder encoder() {
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 	    return new BCryptPasswordEncoder();
 	}
-
-    /*@Bean
-    public UserDetailsManager users() {
-        UserDetails user = User.withDefaultPasswordEncoder()
-            .username("user")
-            .password("password")
-            .roles("USER")
-            .build();
-        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-        users.createUser(user);
-        return users;
-    }*/
 }
