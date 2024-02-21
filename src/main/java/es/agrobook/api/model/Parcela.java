@@ -1,7 +1,5 @@
 package es.agrobook.api.model;
 
-import java.util.List;
-
 import jakarta.persistence.*;
 
 @Entity

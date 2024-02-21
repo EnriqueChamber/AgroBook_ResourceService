@@ -15,11 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.agrobook.api.model.Explotacion;
-import es.agrobook.api.model.Usuario;
-import es.agrobook.api.repository.ExplotacionRepository;
-import es.agrobook.api.repository.UsuarioRepository;
 import es.agrobook.api.service.ExplotacionService;
-import es.agrobook.api.service.UsuarioService;
 
 @RestController
 @RequestMapping("/api")
