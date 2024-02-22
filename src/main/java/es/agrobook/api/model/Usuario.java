@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,7 +21,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Usuario implements UserDetails{
+public class Usuario implements UserDetails, CredentialsContainer{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -245,6 +246,13 @@ public class Usuario implements UserDetails{
 				+ ", direccion=" + direccion + ", localidad=" + localidad + ", codigoPostal=" + codigoPostal
 				+ ", provincia=" + provincia + ", telefonoFijo=" + telefonoFijo + ", telefonoMovil=" + telefonoMovil
 				+ ", email=" + email + ", noInscripcionRopo=" + noInscripcionRopo + ", asesor=" + asesor + "]";
+	}
+
+
+	@Override
+	public void eraseCredentials() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'eraseCredentials'");
 	}
 	
 }

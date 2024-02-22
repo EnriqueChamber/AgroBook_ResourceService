@@ -16,8 +16,8 @@ import es.agrobook.api.utils.TokenReqRes;
 import java.util.List;
 
 @RestController
-@RequestMapping
-public class TokenController {
+@RequestMapping("/auth")
+public class AuthController {
 
     @Autowired
     private JwtUtil jwtUtil;
