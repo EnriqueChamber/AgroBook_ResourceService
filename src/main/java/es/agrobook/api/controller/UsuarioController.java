@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.agrobook.api.model.Usuario;
 import es.agrobook.api.service.UsuarioService;
+import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class UsuarioController {
+    
     @Autowired
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
 
     @GetMapping("/usuarios")
     public ResponseEntity<List<Usuario>> obtenerTodosUsuarios() {

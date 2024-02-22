@@ -13,27 +13,24 @@ import org.springframework.stereotype.Service;
 
 import es.agrobook.api.model.Usuario;
 import es.agrobook.api.repository.UsuarioRepository;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioService implements UserDetailsService{
+	
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     public List<Usuario> obtenerTodosUsuarios() {
     	return usuarioRepository.findAll();
     }
-    
-    public Usuario buscaKike() {
-    	Usuario resUsuario = usuarioRepository.findByUsername("enrique_chamber");
-    	System.out.println("UsuarioRepository.retrieveByName(\"enrique_chamber\") returns: " + resUsuario);
-        return resUsuario;
-    }
-
+	
     @Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario usuario = usuarioRepository.findByUsername(username);
 		if(usuario == null)
-			throw new UsernameNotFoundException(username);
+			throw new UsernameNotFoundException("username \"" + username + "\" not found");
 		return usuario;
 	}
 

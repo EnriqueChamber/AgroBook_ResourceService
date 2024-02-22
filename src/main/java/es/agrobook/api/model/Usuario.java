@@ -4,9 +4,12 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,9 +22,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class Usuario implements UserDetails, CredentialsContainer{
+public class Usuario implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -57,11 +68,6 @@ public class Usuario implements UserDetails, CredentialsContainer{
     @JsonIgnore
     private Set<Authority> authorities;	
 	
-	// CONSTRUCTORS
-	
-	public Usuario() {
-		
-	}
 	
 
 	// GETTERS AND SETTERS 
@@ -74,7 +80,7 @@ public class Usuario implements UserDetails, CredentialsContainer{
 		this.id = id;
 	}
 
-
+	@Override
 	public String getUsername() {
 		return username;
 	}
@@ -83,6 +89,7 @@ public class Usuario implements UserDetails, CredentialsContainer{
 		this.username = username;
 	}
 
+	@Override
 	public String getPassword() {
 		return password;
 	}
@@ -216,7 +223,7 @@ public class Usuario implements UserDetails, CredentialsContainer{
 	// INICIO UserDetails methods
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities;
+		return authorities.stream().map(authority -> new SimpleGrantedAuthority(authority.getAuthority())).collect(Collectors.toList());
 	}
 
 	@Override
@@ -246,13 +253,6 @@ public class Usuario implements UserDetails, CredentialsContainer{
 				+ ", direccion=" + direccion + ", localidad=" + localidad + ", codigoPostal=" + codigoPostal
 				+ ", provincia=" + provincia + ", telefonoFijo=" + telefonoFijo + ", telefonoMovil=" + telefonoMovil
 				+ ", email=" + email + ", noInscripcionRopo=" + noInscripcionRopo + ", asesor=" + asesor + "]";
-	}
-
-
-	@Override
-	public void eraseCredentials() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'eraseCredentials'");
 	}
 	
 }
