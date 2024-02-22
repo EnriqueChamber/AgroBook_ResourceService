@@ -10,6 +10,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 	
+    // PTE IMPLEMENTAR JWK
+    // Usar UsernamePasswordAuthenticationFilter customizado para gestionar los errores de autenticación
+    // Refs.: https://stackoverflow.com/questions/56864133/how-to-detect-exactly-if-authentication-fail-because-username-or-password-incorr
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors(Customizer.withDefaults())
