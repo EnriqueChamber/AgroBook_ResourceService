@@ -15,35 +15,32 @@ import es.agrobook.api.auth.AuthenticationResponse;
 import es.agrobook.api.auth.RegisterRequest;
 import es.agrobook.api.model.Usuario;
 import es.agrobook.api.repository.UsuarioRepository;
-import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 public class AuthenticationService {
     
     @Autowired
-    private final JwtAuthService jwtAuthService;
+    private JwtAuthService jwtAuthService;
 
     @Autowired
-    private final UsuarioRepository repository;
+    private UsuarioRepository repository;
     
     @Autowired
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
     
-    @Autowired
-    private final AuthenticationManager authenticationManager;
+    /*@Autowired
+    private AuthenticationManager authenticationManager;*/
 
 
 
     public AuthenticationResponse register(@RequestBody RegisterRequest request){
-        Usuario usuario = Usuario.builder()
-            .username(request.getUsername())
-            .password(bCryptPasswordEncoder.encode(request.getPassword()))
-            .enabled(true)
-            .nombre(request.getNombre())
-            .nif(request.getNif())
-            .asesor(request.getAsesor())
-            .build();
+        Usuario usuario = new Usuario();
+        usuario.setUsername(request.getUsername());
+        usuario.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
+        usuario.setEnabled(true);
+        usuario.setNombre(request.getNombre());
+        usuario.setNif(request.getNif());
+        usuario.setAsesor(request.getAsesor());
 
             usuario = repository.save(usuario);
 
@@ -54,10 +51,9 @@ public class AuthenticationService {
 
 
     public AuthenticationResponse authenticate(@RequestBody AuthenticationRequest request){
-        
-        authenticationManager.authenticate(
+        /*authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
-        );
+        );*/
 
         Usuario usuario = repository.findByUsername(request.getUsername());
         

@@ -22,11 +22,10 @@ import lombok.RequiredArgsConstructor;
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
-@RequiredArgsConstructor
 public class ExplotacionController {
 
     @Autowired
-    private final ExplotacionService explotacionService;
+    private ExplotacionService explotacionService;
 
     @GetMapping("/explotaciones")
     public ResponseEntity<List<Explotacion>> getExplotaciones() {
@@ -46,7 +45,7 @@ public class ExplotacionController {
     @PutMapping("/explotacion")
     public ResponseEntity<Explotacion> crearExplotacion(@RequestBody Explotacion explotacion) {
         Explotacion nuevaExplotacion = explotacionService.saveAndFlush(explotacion);
-        return ResponseEntity.status(HttpStatus.CREATED).body(nuevaExplotacion);
+        return ResponseEntity.ok(nuevaExplotacion);
     }
 
     // Otros métodos para crear, actualizar, y eliminar usuarios

@@ -1,4 +1,5 @@
 package es.agrobook.api.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,13 +10,13 @@ import es.agrobook.api.auth.RegisterRequest;
 import es.agrobook.api.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/auth")
-@RequiredArgsConstructor
 public class AuthController {
 
     @Autowired
-    private final AuthenticationService authenticationService;
+    private AuthenticationService authenticationService;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request){

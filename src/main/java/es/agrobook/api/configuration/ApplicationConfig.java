@@ -19,11 +19,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@RequiredArgsConstructor
 public class ApplicationConfig {
 
-    @Autowired
-    private final UsuarioService usuarioService;
+    /*@Autowired
+    private UsuarioService usuarioService;*/
 
   /*@Bean
   public UserDetailsService userDetailsService() {
@@ -32,22 +31,21 @@ public class ApplicationConfig {
   }*/
 
 
-  @Bean
+  /*@Bean
   public AuthenticationProvider authenticationProvider(){
       DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
       authProvider.setUserDetailsService(usuarioService);
       authProvider.setPasswordEncoder(bCryptPasswordEncoder());
       return authProvider;
-  }
+  }*/
 
-  @Bean
+  /*@Bean
   public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
       return config.getAuthenticationManager();
-  }
+  }*/
 
   @Bean
   public BCryptPasswordEncoder bCryptPasswordEncoder() {
       return new BCryptPasswordEncoder();
   }
-
 }

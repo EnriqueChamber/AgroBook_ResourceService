@@ -18,8 +18,8 @@ public class Authority implements GrantedAuthority{
     
 	@Id
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "idusuario")
+    @JsonIgnore
     private Usuario usuario;
     
 	@Id

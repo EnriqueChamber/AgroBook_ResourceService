@@ -27,10 +27,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+//@Data
 @Entity
 public class Usuario implements UserDetails{
 
@@ -64,8 +61,7 @@ public class Usuario implements UserDetails{
     @JsonIgnore
     private Set<ExplotacionUsuario> explotacionesUsuarios;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
-    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
     private Set<Authority> authorities;	
 	
 	
@@ -219,6 +215,9 @@ public class Usuario implements UserDetails{
 	}
 
 	
+	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+		this.authorities =  authorities.stream().map(authority -> new Authority(authority.getAuthority())).collect(Collectors.toSet());
+	}
 	
 	// INICIO UserDetails methods
 	@Override

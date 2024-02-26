@@ -21,25 +21,23 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
-@Component
-@RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter{
 
     @Autowired
-    private final JwtAuthService jwtAuthService;
+    private JwtAuthService jwtAuthService;
 
     @Autowired
-    private final UsuarioService usuarioService;
+    private UsuarioService usuarioService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            final String authHeader = request.getHeader("Authorization");
+         String authHeader = request.getHeader("Authorization");
             
             if(authHeader != null && authHeader.startsWith("Bearer ")){
 
-                final String jsonWebToken = authHeader.substring(7);
-                final String username = jwtAuthService.extractUsername(jsonWebToken);
+                String jsonWebToken = authHeader.substring(7);
+                String username = jwtAuthService.extractUsername(jsonWebToken);
 
                 if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
                     UserDetails userDetails = usuarioService.loadUserByUsername(username);
