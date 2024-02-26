@@ -17,14 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.agrobook.api.model.Explotacion;
 import es.agrobook.api.service.ExplotacionService;
+import lombok.RequiredArgsConstructor;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class ExplotacionController {
 
     @Autowired
-    private ExplotacionService explotacionService;
+    private final ExplotacionService explotacionService;
 
     @GetMapping("/explotaciones")
     public ResponseEntity<List<Explotacion>> getExplotaciones() {

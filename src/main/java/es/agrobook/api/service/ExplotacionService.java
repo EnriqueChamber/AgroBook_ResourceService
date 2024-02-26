@@ -9,13 +9,15 @@ import org.springframework.stereotype.Service;
 import es.agrobook.api.model.Explotacion;
 import es.agrobook.api.model.Usuario;
 import es.agrobook.api.repository.ExplotacionRepository;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class ExplotacionService{
     @Autowired
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
     @Autowired
-    private ExplotacionRepository explotacionRepository;
+    private final ExplotacionRepository explotacionRepository;
 
     public List<Explotacion> getExplotaciones() {
         Usuario usuario = usuarioService.getLoggedInUser();

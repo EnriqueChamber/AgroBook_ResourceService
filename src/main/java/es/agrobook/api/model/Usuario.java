@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,7 +22,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Usuario implements UserDetails{
 
@@ -59,11 +68,6 @@ public class Usuario implements UserDetails{
     @JsonIgnore
     private Set<Authority> authorities;	
 	
-	// CONSTRUCTORS
-	
-	public Usuario() {
-		
-	}
 	
 
 	// GETTERS AND SETTERS 
@@ -76,7 +80,7 @@ public class Usuario implements UserDetails{
 		this.id = id;
 	}
 
-
+	@Override
 	public String getUsername() {
 		return username;
 	}
@@ -85,6 +89,7 @@ public class Usuario implements UserDetails{
 		this.username = username;
 	}
 
+	@Override
 	public String getPassword() {
 		return password;
 	}
@@ -218,7 +223,7 @@ public class Usuario implements UserDetails{
 	// INICIO UserDetails methods
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities.stream().map(auth -> new SimpleGrantedAuthority(auth.getAuthority())).collect(Collectors.toList());
+		return authorities.stream().map(authority -> new SimpleGrantedAuthority(authority.getAuthority())).collect(Collectors.toList());
 	}
 
 	@Override
