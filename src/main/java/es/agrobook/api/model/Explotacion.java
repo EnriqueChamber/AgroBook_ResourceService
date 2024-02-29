@@ -31,12 +31,9 @@ public class Explotacion {
 	private int telefonoMovil; 					// Solo Doc
 	private String email; 						// Solo Doc
 	private String rutaImagen;
-	@ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-        name = "explotacion_parcela",
-        joinColumns = @JoinColumn(name = "idexplotacion"),
-        inverseJoinColumns = @JoinColumn(name = "idparcela")
-    )
+	
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "explotacion_parcela", joinColumns = @JoinColumn(name = "idexplotacion"), inverseJoinColumns = @JoinColumn(name = "idparcela"))
 	private List<Parcela> parcelas;
 	
 

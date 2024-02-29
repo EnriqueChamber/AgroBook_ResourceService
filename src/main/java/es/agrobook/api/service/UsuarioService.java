@@ -30,7 +30,7 @@ public class UsuarioService implements UserDetailsService{
     }
 	
     @Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public Usuario loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario usuario = usuarioRepository.findByUsername(username);
 		if(usuario == null)
 			throw new UsernameNotFoundException("username \"" + username + "\" not found");
@@ -55,5 +55,13 @@ public class UsuarioService implements UserDetailsService{
 		usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
         return usuarioRepository.saveAndFlush(usuario);
     }
+
+	public Usuario checkCredentials(Usuario usuario) {
+		Usuario usuarioRes = loadUserByUsername(usuario.getUsername());
+		if(usuarioRes.getPassword() != bCryptPasswordEncoder.encode(usuarioRes.getPassword()))
+			return null;
+		else
+			return usuarioRes;
+	}
 
 }
