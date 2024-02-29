@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import es.agrobook.api.model.Usuario;
@@ -19,8 +20,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UsuarioService implements UserDetailsService{
 	
-    @Autowired
     private final UsuarioRepository usuarioRepository;
+	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	
 
     public List<Usuario> obtenerTodosUsuarios() {
     	return usuarioRepository.findAll();
@@ -47,5 +50,10 @@ public class UsuarioService implements UserDetailsService{
 	public String getLoggedInUsername() {
 		return getLoggedInUser().getUsername();
 	}
+
+    public Usuario registrar(Usuario usuario) {
+		usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
+        return usuarioRepository.saveAndFlush(usuario);
+    }
 
 }

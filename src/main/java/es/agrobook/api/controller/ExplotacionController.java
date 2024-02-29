@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.agrobook.api.model.Explotacion;
 import es.agrobook.api.service.ExplotacionService;
-import lombok.RequiredArgsConstructor;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class ExplotacionController {
@@ -33,6 +31,12 @@ public class ExplotacionController {
         return ResponseEntity.ok(explotaciones);
     }
 
+    
+    @GetMapping("/usuario")
+    public ResponseEntity<String> getExplotaciones(Authentication authentication) {
+        return ResponseEntity.ok(authentication.getName());
+    }
+
     @GetMapping("/explotacion/{id}")
     public ResponseEntity<Explotacion> crearExplotacion(@PathVariable Long id) {
         Optional<Explotacion> explotacion = explotacionService.findById(id);
@@ -42,9 +46,14 @@ public class ExplotacionController {
     }
 
     @PostMapping("/explotacion")
-    @PutMapping("/explotacion")
     public ResponseEntity<Explotacion> crearExplotacion(@RequestBody Explotacion explotacion) {
-        Explotacion nuevaExplotacion = explotacionService.saveAndFlush(explotacion);
+        Explotacion nuevaExplotacion = explotacionService.saveAndFlush((Explotacion)explotacion);
+        return ResponseEntity.ok(nuevaExplotacion);
+    }
+
+    @PutMapping("/explotacion")
+    public ResponseEntity<Explotacion> cactualizaExplotacion(@RequestBody Explotacion explotacion) {
+        Explotacion nuevaExplotacion = explotacionService.saveAndFlush((Explotacion)explotacion);
         return ResponseEntity.ok(nuevaExplotacion);
     }
 

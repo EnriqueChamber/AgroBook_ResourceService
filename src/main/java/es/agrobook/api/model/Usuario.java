@@ -14,21 +14,27 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
 public class Usuario implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
@@ -36,7 +42,6 @@ public class Usuario implements UserDetails{
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idusuario")
 	private long id;
 	private String username;
 	private String password;
@@ -49,180 +54,31 @@ public class Usuario implements UserDetails{
 	private String localidad;
 	private int codigoPostal;
 	private String provincia;
-	private Integer telefonoFijo = 0;
-	private Integer telefonoMovil = 0;
+	private int telefonoFijo;
+	private int telefonoMovil;
 	private String email;
 	private String noInscripcionRopo;
-	/*@OneToMany(mappedBy = "post")
-	private List tiposCarnet;*/
 	private boolean asesor;
 
-    @OneToMany(mappedBy = "usuario")
-    @JsonIgnore
-    private Set<ExplotacionUsuario> explotacionesUsuarios;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "explotacion_usuario", joinColumns = @JoinColumn(name = "idusuario"), inverseJoinColumns = @JoinColumn(name = "idexplotacion"))
+    private Set<Explotacion> explotaciones;
 
-    @OneToMany(mappedBy = "usuario")
-    private Set<Authority> authorities;	
+    
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> authorities;
 	
 	
 
-	// GETTERS AND SETTERS 
-	public Long getId() {
-		return id;
-	}
 
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	@Override
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	@Override
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getApellido1() {
-		return apellido1;
-	}
-
-	public void setApellido1(String apellidos) {
-		this.apellido1 = apellidos;
-	}
-
-	public String getApellido2() {
-		return apellido2;
-	}
-
-	public void setApellido2(String apellido2) {
-		this.apellido2 = apellido2;
-	}
-
-	public String getNif() {
-		return nif;
-	}
-
-	public void setNif(String nif) {
-		this.nif = nif;
-	}
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	public String getLocalidad() {
-		return localidad;
-	}
-
-	public void setLocalidad(String localidad) {
-		this.localidad = localidad;
-	}
-
-	public int getCodigoPostal() {
-		return codigoPostal;
-	}
-
-	public void setCodigoPostal(int codigoPostal) {
-		this.codigoPostal = codigoPostal;
-	}
-
-	public String getProvincia() {
-		return provincia;
-	}
-
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
-	}
-
-	public int getTelefonoFijo() {
-		return telefonoFijo;
-	}
-
-	public void setTelefonoFijo(int telefonoFijo) {
-		this.telefonoFijo = telefonoFijo;
-	}
-	
-	public int getTelefonoMovil() {
-		return telefonoMovil;
-	}
-
-	public void setTelefonoMovil(int telefonoMovil) {
-		this.telefonoMovil = telefonoMovil;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public String getNoInscripcionRopo() {
-		return noInscripcionRopo;
-	}
-
-	public void setNoInscripcionRopo(String noInscripcionRopo) {
-		this.noInscripcionRopo = noInscripcionRopo;
-	}
-
-	/*public String[] getTiposCarnet() {
-		return tiposCarnet;
-	}
-
-	public void setTiposCarnet(String[] tiposCarnet) {
-		this.tiposCarnet = tiposCarnet;
-	}*/
-
-	public boolean isAsesor() {
-		return asesor;
-	}
-
-	public void setAsesor(boolean asesor) {
-		this.asesor = asesor;
-	}
-
-	
 	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-		this.authorities =  authorities.stream().map(authority -> new Authority(authority.getAuthority())).collect(Collectors.toSet());
+		this.authorities =  authorities.stream().map(authority -> authority.getAuthority()).collect(Collectors.toSet());
 	}
 	
 	// INICIO UserDetails methods
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities.stream().map(authority -> new SimpleGrantedAuthority(authority.getAuthority())).collect(Collectors.toList());
+		return authorities.stream().map(authority -> new SimpleGrantedAuthority(authority)).collect(Collectors.toList());
 	}
 
 	@Override

@@ -14,11 +14,12 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ExplotacionService{
-    @Autowired
+    
     private final UsuarioService usuarioService;
-    @Autowired
     private final ExplotacionRepository explotacionRepository;
 
+
+    
     public List<Explotacion> getExplotaciones() {
         Usuario usuario = usuarioService.getLoggedInUser();
     	return explotacionRepository.findByExplotacionesUsuarios_Usuario(usuario);
