@@ -1,5 +1,10 @@
 package es.agrobook.api.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,6 +45,13 @@ public class Parcela{
     @Column(name="secano")
 	private String secanoRegadio; 			// Solo Doc     //Secano (SEC), aspersión (ASP), goteo o localizado (LOC), por gravedad (GRA).
 	private String ventilacion; 			// Solo Doc //Aire libre (AL), malla (M), cubierta bajo plástico (BP), invernadero (INV)
+
+	
+    /*@ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "explotacion_parcela", joinColumns = @JoinColumn(name = "idparcela"), inverseJoinColumns = @JoinColumn(name = "idexplotacion"))
+	@JsonBackReference 
+	@JsonIgnore
+	private List<Explotacion> explotaciones;*/
 
 	// los siguientes datos serán de la clase cultivo, el cual tendrá asociado una parcela
 	//private float superficieCultivada; 		// Solo Doc

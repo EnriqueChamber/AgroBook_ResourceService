@@ -60,9 +60,8 @@ public class Usuario implements UserDetails{
 	private String noInscripcionRopo;
 	private boolean asesor;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "explotacion_usuario", joinColumns = @JoinColumn(name = "idusuario"), inverseJoinColumns = @JoinColumn(name = "idexplotacion"))
-    private Set<Explotacion> explotaciones;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    private Set<ExplotacionUsuario> explotaciones;
 
     
     @ElementCollection(fetch = FetchType.EAGER)

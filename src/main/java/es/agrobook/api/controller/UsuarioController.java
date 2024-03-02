@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,9 +27,15 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping("/usuarios")
-    public ResponseEntity<List<Usuario>> obtenerTodosUsuarios() {
+    public ResponseEntity<List<Usuario>> getUsuarios() {
         List<Usuario> usuarios = usuarioService.obtenerTodosUsuarios();
         return ResponseEntity.ok(usuarios);
+    }
+
+    @GetMapping("/usuario")
+    public ResponseEntity<Usuario> getUsuario() {
+        Usuario usuarioRes = usuarioService.getLoggedInUser();
+        return ResponseEntity.ok(usuarioRes);
     }
 
     @PutMapping("/usuario/registrar")
@@ -38,7 +45,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity logIn() {
+    public ResponseEntity<Object> logIn() {
         
         Usuario usuarioRes = usuarioService.getLoggedInUser();
 
@@ -50,6 +57,8 @@ public class UsuarioController {
 
         return ResponseEntity.ok(usuarioRes);
     }
+    
+    
 
     // Otros métodos para crear, actualizar, y eliminar usuarios
 }

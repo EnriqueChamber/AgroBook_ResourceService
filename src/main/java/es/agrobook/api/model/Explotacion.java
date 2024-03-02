@@ -3,6 +3,8 @@ package es.agrobook.api.model;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,9 +22,11 @@ public class Explotacion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idexplotacion")
 	private long id;
+	@Column(nullable = false)
 	private String nombre;
 	private String registroNacional; 			// Solo Doc
 	private String registroAutonomico; 			// Solo Doc
+	@Column(nullable = false)
 	private String direccion; 					// Solo Doc
 	private String localidad; 					// Solo Doc
 	private int codigoPostal; 					// Solo Doc
@@ -34,11 +38,12 @@ public class Explotacion {
 	
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "explotacion_parcela", joinColumns = @JoinColumn(name = "idexplotacion"), inverseJoinColumns = @JoinColumn(name = "idparcela"))
+	//@JsonManagedReference 
 	private List<Parcela> parcelas;
 	
 
-    @OneToMany(mappedBy = "explotacion")
-    private Set<ExplotacionUsuario> explotacionesUsuarios;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "explotacion")
+    private Set<ExplotacionUsuario> usuarios;
 
 	
 }
