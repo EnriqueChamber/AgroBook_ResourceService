@@ -16,13 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 import es.agrobook.api.AgroBookApplication;
 import es.agrobook.api.model.Parcela;
 import es.agrobook.api.service.ParcelaService;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class ParcelaController {
 
-    @Autowired
-    private ParcelaService parcelaService;
+    private final ParcelaService parcelaService;
+
+
 
 
     @GetMapping("/parcelas/{id}")

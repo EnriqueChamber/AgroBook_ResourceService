@@ -3,11 +3,8 @@ package es.agrobook.api.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,14 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import es.agrobook.api.AgroBookApplication;
 import es.agrobook.api.model.Explotacion;
 import es.agrobook.api.service.ExplotacionService;
-import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class ExplotacionController {
 
-    @Autowired
-    private ExplotacionService explotacionService;
+    private final ExplotacionService explotacionService;
 
     @GetMapping("/explotaciones")
     public ResponseEntity<Object> getExplotaciones() {
@@ -48,21 +45,6 @@ public class ExplotacionController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 
             return ResponseEntity.ok(explotacion.get());
-        }
-        catch(Exception ex){
-            return AgroBookApplication.handleControllerException(ex);
-        }
-    }
-    
-    @GetMapping("/explotaciones-usuarios/{id}")
-    public ResponseEntity<Object> getExplotacionUsuarios(@PathVariable Long id) {
-        try{
-            Explotacion explotacion = explotacionService.findById(id).get();
-            if(explotacion == null)
-                throw new EntityNotFoundException();
-
-            var usuarios = explotacion.getUsuarios();
-            return ResponseEntity.ok(usuarios);
         }
         catch(Exception ex){
             return AgroBookApplication.handleControllerException(ex);
@@ -90,7 +72,6 @@ public class ExplotacionController {
             return AgroBookApplication.handleControllerException(ex);
         }
     }
-
 
     // Otros métodos para crear, actualizar, y eliminar usuarios
 }

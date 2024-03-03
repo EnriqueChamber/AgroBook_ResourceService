@@ -3,8 +3,6 @@ package es.agrobook.api.model;
 import java.util.List;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,10 +18,11 @@ public class Explotacion {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idexplotacion")
 	private long id;
 	@Column(nullable = false)
 	private String nombre;
+	@Column(nullable = false)
+	private String nif;
 	private String registroNacional; 			// Solo Doc
 	private String registroAutonomico; 			// Solo Doc
 	@Column(nullable = false)
@@ -43,7 +42,7 @@ public class Explotacion {
 	
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "explotacion")
-    private Set<ExplotacionUsuario> usuarios;
+    private Set<UsuarioExplotacion> usuariosExplotacion;
 
 	
 }

@@ -20,7 +20,6 @@ public class Parcela{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idparcela")
 	private long id;
 	private String nombre;
 

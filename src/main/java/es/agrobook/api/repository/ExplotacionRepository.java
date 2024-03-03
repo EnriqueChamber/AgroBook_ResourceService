@@ -13,5 +13,5 @@ import es.agrobook.api.model.Usuario;
 @Repository
 public interface ExplotacionRepository extends JpaRepository<Explotacion, Long> {
 	
-	List<Explotacion> findByUsuarios_Usuario(Usuario usuario);
+	List<Explotacion> findByUsuariosExplotacion_Usuario(Usuario usuario);
 }

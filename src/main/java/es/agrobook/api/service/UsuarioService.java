@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import es.agrobook.api.model.Usuario;
 import es.agrobook.api.repository.UsuarioRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -35,6 +36,13 @@ public class UsuarioService implements UserDetailsService{
 		if(usuario == null)
 			throw new UsernameNotFoundException("username \"" + username + "\" not found");
 		return usuario;
+	}
+	
+	public Usuario loadUserByUId(long id) {
+		Optional<Usuario> usuario = usuarioRepository.findById(id);
+		if(!usuario.isPresent())
+			throw new EntityNotFoundException("user with id: \"" + id + "\" not found");
+		return usuario.get();
 	}
 
 	public Usuario getLoggedInUser() {

@@ -1,12 +1,20 @@
 package es.agrobook.api.model;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import java.io.Serializable;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "explotacion_usuario")
-public class ExplotacionUsuario {
+@IdClass(UsuarioExplotacionId.class)
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
+public class UsuarioExplotacion implements Serializable {
 
 	@Id
     @ManyToOne(fetch = FetchType.EAGER)

@@ -3,7 +3,6 @@ package es.agrobook.api.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.agrobook.api.model.Explotacion;
@@ -22,7 +21,7 @@ public class ExplotacionService{
     
     public List<Explotacion> getExplotaciones() {
         Usuario usuario = usuarioService.getLoggedInUser();
-    	return explotacionRepository.findByUsuarios_Usuario(usuario);
+    	return explotacionRepository.findByUsuariosExplotacion_Usuario(usuario);
     }
 
 	public Optional<Explotacion> findById(Long id) {

@@ -22,11 +22,13 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class UsuarioController {
     
-    @Autowired
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
 
+
+    
     @GetMapping("/usuarios")
     public ResponseEntity<Object> getUsuarios() {
         

@@ -3,6 +3,7 @@ package es.agrobook.api.model;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -12,6 +13,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -60,19 +62,15 @@ public class Usuario implements UserDetails{
 	private String noInscripcionRopo;
 	private boolean asesor;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
-    private Set<ExplotacionUsuario> explotaciones;
-
     
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> authorities;
+
+	
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	private Set<UsuarioExplotacion> usuarioExplotaciones;
 	
 	
-
-
-	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-		this.authorities =  authorities.stream().map(authority -> authority.getAuthority()).collect(Collectors.toSet());
-	}
 	
 	// INICIO UserDetails methods
 	@Override
