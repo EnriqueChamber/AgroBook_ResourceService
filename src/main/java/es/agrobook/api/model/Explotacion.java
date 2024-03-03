@@ -39,6 +39,11 @@ public class Explotacion {
     @JoinTable(name = "explotacion_parcela", joinColumns = @JoinColumn(name = "idexplotacion"), inverseJoinColumns = @JoinColumn(name = "idparcela"))
 	//@JsonManagedReference 
 	private List<Parcela> parcelas;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "explotacion_maquina", joinColumns = @JoinColumn(name = "idexplotacion"), inverseJoinColumns = @JoinColumn(name = "idmaquina"))
+	//@JsonManagedReference 
+	private List<Maquina> maquinaria;
 	
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "explotacion")
