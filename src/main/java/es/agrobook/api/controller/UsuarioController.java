@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.agrobook.api.AgroBookApplication;
 import es.agrobook.api.model.Usuario;
 import es.agrobook.api.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
@@ -27,35 +28,56 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping("/usuarios")
-    public ResponseEntity<List<Usuario>> getUsuarios() {
-        List<Usuario> usuarios = usuarioService.obtenerTodosUsuarios();
-        return ResponseEntity.ok(usuarios);
+    public ResponseEntity<Object> getUsuarios() {
+        
+        try{
+            List<Usuario> usuarios = usuarioService.obtenerTodosUsuarios();
+            return ResponseEntity.ok(usuarios);
+        }
+        catch(Exception ex){
+            return AgroBookApplication.handleControllerException(ex);
+        }
     }
 
     @GetMapping("/usuario")
-    public ResponseEntity<Usuario> getUsuario() {
-        Usuario usuarioRes = usuarioService.getLoggedInUser();
-        return ResponseEntity.ok(usuarioRes);
+    public ResponseEntity<Object> getUsuario() {
+        try{
+            Usuario usuarioRes = usuarioService.getLoggedInUser();
+            return ResponseEntity.ok(usuarioRes);
+        }
+        catch(Exception ex){
+            return AgroBookApplication.handleControllerException(ex);
+        }
     }
 
     @PutMapping("/usuario/registrar")
-    public ResponseEntity<Usuario> registrarUsuario(@RequestBody Usuario usuario) {
-        Usuario usuarioRes = usuarioService.registrar(usuario);
-        return ResponseEntity.ok(usuarioRes);
+    public ResponseEntity<Object> registrarUsuario(@RequestBody Usuario usuario) {
+        try{
+            Usuario usuarioRes = usuarioService.registrar(usuario);
+            return ResponseEntity.ok(usuarioRes);
+        }
+        catch(Exception ex){
+            return AgroBookApplication.handleControllerException(ex);
+        }
     }
 
     @GetMapping("/login")
     public ResponseEntity<Object> logIn() {
         
-        Usuario usuarioRes = usuarioService.getLoggedInUser();
+        try{
+            Usuario usuarioRes = usuarioService.getLoggedInUser();
 
-        if(usuarioRes == null)
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Usuario o contraseña incorrecta");
+            if(usuarioRes == null)
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Usuario o contraseña incorrecta");
 
-        if(!usuarioRes.isEnabled())
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Cuenta desactivada");
+            if(!usuarioRes.isEnabled())
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Cuenta desactivada");
 
-        return ResponseEntity.ok(usuarioRes);
+            return ResponseEntity.ok(usuarioRes);
+        }
+        catch(Exception ex){
+            return AgroBookApplication.handleControllerException(ex);
+        }
     }
     
     

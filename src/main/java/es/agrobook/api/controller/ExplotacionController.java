@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.agrobook.api.AgroBookApplication;
 import es.agrobook.api.model.Explotacion;
 import es.agrobook.api.service.ExplotacionService;
+import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/api")
@@ -33,7 +35,7 @@ public class ExplotacionController {
             return ResponseEntity.ok(explotaciones);
         }
         catch(Exception ex){
-            return handleException(ex);
+            return AgroBookApplication.handleControllerException(ex);
         }
     }
 
@@ -42,12 +44,28 @@ public class ExplotacionController {
     public ResponseEntity<Object> getExplotacion(@PathVariable Long id) {
         try{
             Optional<Explotacion> explotacion = explotacionService.findById(id);
-            if(explotacion == null)
+            if(!explotacion.isPresent())
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
             return ResponseEntity.ok(explotacion.get());
         }
         catch(Exception ex){
-            return handleException(ex);
+            return AgroBookApplication.handleControllerException(ex);
+        }
+    }
+    
+    @GetMapping("/explotaciones-usuarios/{id}")
+    public ResponseEntity<Object> getExplotacionUsuarios(@PathVariable Long id) {
+        try{
+            Explotacion explotacion = explotacionService.findById(id).get();
+            if(explotacion == null)
+                throw new EntityNotFoundException();
+
+            var usuarios = explotacion.getUsuarios();
+            return ResponseEntity.ok(usuarios);
+        }
+        catch(Exception ex){
+            return AgroBookApplication.handleControllerException(ex);
         }
     }
 
@@ -58,7 +76,7 @@ public class ExplotacionController {
             return ResponseEntity.ok(nuevaExplotacion);
         }
         catch(Exception ex){
-            return handleException(ex);
+            return AgroBookApplication.handleControllerException(ex);
         }
     }
 
@@ -69,21 +87,10 @@ public class ExplotacionController {
             return ResponseEntity.ok(explotacionModificada);
         }
         catch(Exception ex){
-            return handleException(ex);
+            return AgroBookApplication.handleControllerException(ex);
         }
     }
 
-
-    private ResponseEntity<Object> handleException(Exception ex){
-
-        if(ex instanceof DataIntegrityViolationException){
-            DataIntegrityViolationException exception = (DataIntegrityViolationException)ex;
-            return ResponseEntity.badRequest().body(exception.getMessage());
-        }
-        
-        
-        return ResponseEntity.badRequest().body(ex.getMessage());
-    }
 
     // Otros métodos para crear, actualizar, y eliminar usuarios
 }
