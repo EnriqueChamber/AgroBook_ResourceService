@@ -13,15 +13,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
-public class Maquina{
+public class Cultivo{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String descripcion;
-	private String noInscripcionRoma;
-	private Date fechaAdquisicion;
-	private String fechaUltimaInspeccion;
+	private Date fechaInicio;
+	private Date fechaFinalizacion;
+	private String especie;
+	private String variedad;
+	private float superficie;
+
+    @ManyToOne
+    @JoinColumn(name = "idparcela")
+	private Parcela parcela;
 
 	
     /*@ManyToMany(fetch = FetchType.LAZY)
@@ -29,6 +34,5 @@ public class Maquina{
 	@JsonBackReference 
 	@JsonIgnore
 	private List<Explotacion> explotaciones;*/
-
 
 }
