@@ -1,8 +1,5 @@
 package es.agrobook.api.model;
 
-import java.io.Serializable;
-
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
-public class UsuarioExplotacionId {
-    private long usuario;
+public class PersonaExplotacionId {
+    private long persona;
     private long explotacion;
     private String relacion;
 

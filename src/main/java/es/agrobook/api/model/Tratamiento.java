@@ -1,7 +1,6 @@
 package es.agrobook.api.model;
 
 import java.util.Date;
-import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,27 +13,33 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
-public class Cultivo{
+public class Tratamiento{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private Date fechaInicio;
-	private Date fechaFinalizacion;
-	private String especie;
-	private String variedad;
-	private float superficie;
+	private String plaga;
+	private String justificacionActuacion;
 
-	private Date fechaSiembra;
-	private float cantidadSemilla;
+	// ALTERNATIVAS NO QUIMICAS
+	// Tipo de Medida
+	// Intensidad de la medida
+	// Rango de fechas de actuacion
+
+	// ALTERNATIVAS QUIMICAS
+	// Nombre comercial
+	// Numero de Registro
+	// Dosis empleada + unidad de Medida (KG/L)
+	// Rango de fechas de actuacion
+
+	private String eficacia;
+	private String observaciones;
+
 
     @ManyToOne
-    @JoinColumn(name = "idparcela")
-	private Parcela parcela;
+    @JoinColumn(name = "idcultivo")
+	private Cultivo cultivo;
 
-	
-	@OneToMany(mappedBy = "cultivo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Tratamiento> tratamientos;
 	
     /*@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "explotacion_parcela", joinColumns = @JoinColumn(name = "idparcela"), inverseJoinColumns = @JoinColumn(name = "idexplotacion"))

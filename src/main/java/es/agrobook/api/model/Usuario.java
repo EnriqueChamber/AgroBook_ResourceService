@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import es.agrobook.api.model.persona.Persona;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -27,6 +28,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -48,27 +50,16 @@ public class Usuario implements UserDetails{
 	private String username;
 	private String password;
 	private boolean enabled;
-	private String nombre;
-	private String apellido1;
-	private String apellido2;
-	private String nif;
-	private String direccion;
-	private String localidad;
-	private int codigoPostal;
-	private String provincia;
-	private int telefonoFijo;
-	private int telefonoMovil;
-	private String email;
-	private String noInscripcionRopo;
+
+	@OneToOne()
+    @JoinColumn(name = "persona", referencedColumnName = "id")
+	private Persona persona;
+	
 	private boolean asesor;
 
     
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> authorities;
-
-	
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
-	private Set<UsuarioExplotacion> usuarioExplotaciones;
 	
 	
 	
@@ -100,11 +91,7 @@ public class Usuario implements UserDetails{
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
-				+ ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2 + ", nif=" + nif
-				+ ", direccion=" + direccion + ", localidad=" + localidad + ", codigoPostal=" + codigoPostal
-				+ ", provincia=" + provincia + ", telefonoFijo=" + telefonoFijo + ", telefonoMovil=" + telefonoMovil
-				+ ", email=" + email + ", noInscripcionRopo=" + noInscripcionRopo + ", asesor=" + asesor + "]";
+		return "Usuario [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled + "]";
 	}
 	
 }

@@ -2,6 +2,7 @@ package es.agrobook.api.model;
 
 import java.io.Serializable;
 
+import es.agrobook.api.model.persona.Persona;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,21 +10,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@IdClass(UsuarioExplotacionId.class)
+@IdClass(PersonaExplotacionId.class)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-public class UsuarioExplotacion implements Serializable {
+public class PersonaExplotacion implements Serializable {
 
 	@Id
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idusuario")
-    private Usuario usuario;
+    @JoinColumn(name = "id_persona")
+    private Persona persona;
 
 	@Id
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idexplotacion")
+    @JoinColumn(name = "id_explotacion")
     private Explotacion explotacion;
 
 	@Id

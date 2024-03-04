@@ -21,7 +21,7 @@ public class Maquina{
 	private String descripcion;
 	private String noInscripcionRoma;
 	private Date fechaAdquisicion;
-	private String fechaUltimaInspeccion;
+	private Date fechaUltimaInspeccion;
 
 	
     /*@ManyToMany(fetch = FetchType.LAZY)

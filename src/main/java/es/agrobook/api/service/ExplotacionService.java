@@ -21,7 +21,7 @@ public class ExplotacionService{
     
     public List<Explotacion> getExplotaciones() {
         Usuario usuario = usuarioService.getLoggedInUser();
-    	return explotacionRepository.findByUsuariosExplotacion_Usuario(usuario);
+    	return explotacionRepository.findByPersonasExplotacion_Persona(usuario.getPersona());
     }
 
 	public Optional<Explotacion> findById(Long id) {

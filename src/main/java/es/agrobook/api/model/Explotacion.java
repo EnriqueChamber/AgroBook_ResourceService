@@ -3,6 +3,8 @@ package es.agrobook.api.model;
 import java.util.List;
 import java.util.Set;
 
+import es.agrobook.api.model.location.Municipio;
+import es.agrobook.api.model.persona.PersonaContacto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,21 +21,30 @@ public class Explotacion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+
 	@Column(nullable = false)
 	private String nombre;
+
 	@Column(nullable = false)
 	private String nif;
-	private String registroNacional; 			// Solo Doc
+
+	@Column(nullable = false)
 	private String registroAutonomico; 			// Solo Doc
+
+	private String registroNacional; 			// Solo Doc
+
 	@Column(nullable = false)
 	private String direccion; 					// Solo Doc
-	private String localidad; 					// Solo Doc
-	private int codigoPostal; 					// Solo Doc
-	private String provincia; 					// Solo Doc
-	private int telefonoFijo; 					// Solo Doc
-	private int telefonoMovil; 					// Solo Doc
-	private String email; 						// Solo Doc
-	private String rutaImagen;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(referencedColumnName = "id", nullable = false)
+	private Municipio municipio;
+
+	@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(referencedColumnName = "id", nullable = false)
+	private PersonaContacto contacto;
+
+	
 	
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "explotacion_parcela", joinColumns = @JoinColumn(name = "idexplotacion"), inverseJoinColumns = @JoinColumn(name = "idparcela"))
@@ -46,8 +57,13 @@ public class Explotacion {
 	private List<Maquina> maquinaria;
 	
 
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "explotacion")
-    private Set<UsuarioExplotacion> usuariosExplotacion;
+    private Set<PersonaExplotacion> personasExplotacion;
+
+	
+	
+	private String rutaImagen;
 
 	
 }
