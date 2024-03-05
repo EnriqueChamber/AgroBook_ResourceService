@@ -21,7 +21,7 @@ public class ActividadSecundaria2doNivel {
 	@Column(nullable = false)
 	private String descripcion;
 
-	@OneToOne
+	@ManyToOne
 	private ActividadSecundaria1erNivel actividad;
 
 	/*

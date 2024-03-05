@@ -20,7 +20,7 @@ public class ActividadSecundaria3erNivel {
 	@Column(nullable = false)
 	private String descripcion;
 
-	@OneToOne
+	@ManyToOne
 	private ActividadSecundaria2doNivel actividad;
 
 	/*

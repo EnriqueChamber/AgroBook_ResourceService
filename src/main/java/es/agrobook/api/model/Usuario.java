@@ -34,11 +34,17 @@ public class Usuario implements UserDetails{
 	@Column(nullable = false)
 	private boolean enabled;
 
+	@Column(nullable = false)
+	private boolean expiredAccount;
+
+	@Column(nullable = false)
+	private boolean locked;
+
+	@Column(nullable = false)
+	private boolean expiredCredentials;
+
 	@OneToOne
 	private Persona persona;
-	
-	@Column(nullable = false)
-	private boolean asesor;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> authorities;
@@ -51,19 +57,19 @@ public class Usuario implements UserDetails{
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
-		return true;
+		return !expiredAccount;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return true;
+		return !locked;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return true;
+		return !expiredCredentials;
 	}
 	
 }

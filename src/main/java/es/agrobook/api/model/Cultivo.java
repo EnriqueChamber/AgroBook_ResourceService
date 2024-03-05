@@ -49,7 +49,7 @@ public class Cultivo{
     @ManyToOne
 	private Explotacion explotacion;
 
-	@OneToMany(mappedBy = "cultivo", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "cultivo")
     private Set<Tratamiento> tratamientos;
 	
 

@@ -41,10 +41,10 @@ public class Explotacion {
 	@Column(nullable = false)
 	private String direccion; 		
 	
-	@OneToOne
+	@ManyToOne
 	private Municipio municipio;
 
-	@OneToOne
+	@ManyToOne
 	private PersonaContacto contacto;
 
 	// Indicadores REA
@@ -66,10 +66,10 @@ public class Explotacion {
 	@Column(nullable = true)
 	private Date fechaBajaRea;
 	
-	@OneToOne
+	@ManyToOne
 	private CausaBaja causaBaja;
 
-	@OneToOne
+	@ManyToOne
 	private TipoExplotacion clasificacion;
 
 	@Column(nullable = true)
@@ -79,18 +79,16 @@ public class Explotacion {
     @ManyToMany
 	private List<Parcela> parcelas;
 	
-    @OneToMany
+    @OneToMany(mappedBy = "explotacion")
 	private List<Cultivo> cultivos;
 
     @ManyToMany
 	private List<Maquina> maquinaria;
 
-    @OneToMany
+    @OneToMany(mappedBy = "explotacion")
 	private Set<RendimientoEconomico> rendimientoEconomicos;
-	
 
-
-    @OneToMany
+    @OneToMany(mappedBy = "explotacion")
     private Set<PersonaExplotacion> personasExplotacion;
 
 	

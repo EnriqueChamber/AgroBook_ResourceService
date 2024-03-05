@@ -19,7 +19,7 @@ public class Parcela{
 	@Column(nullable = false)
 	private String nombre;
 
-	@OneToOne
+	@ManyToOne
 	private Municipio municipio;
 
 	@Column(nullable = false)

@@ -27,7 +27,7 @@ public class Persona {
 
 	private String apellido2;
 
-	@OneToOne
+	@ManyToOne
 	private PersonaGenero genero;
 
 	@Column(nullable = false)
@@ -36,19 +36,19 @@ public class Persona {
 	@Column(nullable = false)
 	private String direccion;
 
-	@OneToOne
+	@ManyToOne
 	private Municipio municipio;
 
 	@Column(nullable = false)
 	private int codigoPostal;
 
-	@OneToOne
+	@ManyToOne
 	private PersonaContacto contacto;
 
-	@OneToOne
+	@ManyToOne
 	private TipoAgricultor tipoAgricultor;
 
-	@OneToOne
+	@ManyToOne
 	private CapacitacionProfesional capacitacionProfesional;
 
 	

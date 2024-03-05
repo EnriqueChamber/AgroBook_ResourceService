@@ -25,7 +25,7 @@ public class PersonaExplotacion implements Serializable {
     private Explotacion explotacion;
 
 	@Id
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private PersonaExplotacionRelacion relacion;
 
 	@Column(nullable = false)

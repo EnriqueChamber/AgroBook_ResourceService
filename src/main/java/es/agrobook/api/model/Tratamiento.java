@@ -14,8 +14,10 @@ public class Tratamiento{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+    @Column(nullable = false)
 	private String plaga;
 
+    @Column(nullable = false)
 	private String justificacionActuacion;
 
 	// ALTERNATIVAS NO QUIMICAS
@@ -30,11 +32,10 @@ public class Tratamiento{
 	// Rango de fechas de actuacion
 
 	private String eficacia;
+
 	private String observaciones;
 
-
     @ManyToOne
-	@MapsId()
 	private Cultivo cultivo;
 
 }

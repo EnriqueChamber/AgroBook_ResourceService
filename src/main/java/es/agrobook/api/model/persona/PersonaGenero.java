@@ -11,7 +11,6 @@ import lombok.*;
 public class PersonaGenero {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(length = 1)
 	private String codigo;
 	

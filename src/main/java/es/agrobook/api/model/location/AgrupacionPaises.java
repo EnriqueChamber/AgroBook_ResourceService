@@ -17,7 +17,7 @@ public class AgrupacionPaises {
 	@Column(nullable = false)
 	private String descripcion;
 	
-	@OneToOne
+	@ManyToOne
 	private Continente continente;
 	
 
