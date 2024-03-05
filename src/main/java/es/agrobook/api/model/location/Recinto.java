@@ -2,17 +2,14 @@ package es.agrobook.api.model.location;
 
 import es.agrobook.api.model.enums.UsoSigpac;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-public class Recinto{
+public class Recinto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +18,6 @@ public class Recinto{
 	@Column(nullable = true)
 	private int recinto;					// Doc y (Web -> Parcela = Recinto Sigpac)
 
-	
-	
 	@Column(nullable = false)
 	private float superficie;				// Doc y (Web -> Parcela = Recinto Sigpac)
 	
@@ -45,7 +40,6 @@ public class Recinto{
 	// FIN REFERENCIAS SIGPAC
 
 
-	
     @ManyToOne
 	private Parcela parcela;
 

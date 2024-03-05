@@ -11,10 +11,7 @@ import es.agrobook.api.model.location.Parcela;
 import es.agrobook.api.model.persona.PersonaContacto;
 import es.agrobook.api.model.persona.PersonaExplotacion;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor

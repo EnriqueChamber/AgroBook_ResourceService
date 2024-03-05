@@ -1,16 +1,9 @@
 package es.agrobook.api.model.location;
 
-import java.util.List;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor
@@ -22,9 +15,11 @@ public class Parcela{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+
+	@Column(nullable = false)
 	private String nombre;
 
-	@OneToOne()@MapsId()
+	@OneToOne
 	private Municipio municipio;
 
 	@Column(nullable = false)
@@ -55,7 +50,7 @@ public class Parcela{
 	@JsonIgnore
 	private List<Explotacion> explotaciones;*/
 
-	@ManyToMany(mappedBy = "parcela")
+	@OneToMany(mappedBy = "parcela")
     private Set<Recinto> recintos;
 
 }

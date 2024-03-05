@@ -24,7 +24,7 @@ public class Municipio {
 	@Column(nullable = false)
 	private String descripcion;
 
-	@OneToOne()
+	@OneToOne
 	private Provincia provincia;
 	
 

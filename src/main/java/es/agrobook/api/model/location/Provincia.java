@@ -17,7 +17,7 @@ public class Provincia {
 	@Column(nullable = false)
 	private String descripcion;
 
-	@OneToOne()
+	@OneToOne
 	private ComunidadAutonoma comunidadAutonoma;
 	
 

@@ -6,10 +6,7 @@ import java.util.Date;
 import es.agrobook.api.model.enums.PersonaExplotacionRelacion;
 import es.agrobook.api.model.explotacion.Explotacion;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @IdClass(PersonaExplotacion.PersonaExplotacionId.class)

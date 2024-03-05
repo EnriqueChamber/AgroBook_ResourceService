@@ -1,7 +1,5 @@
 package es.agrobook.api.model.explotacion;
 
-import java.io.Serializable;
-
 import jakarta.persistence.*;
 import lombok.*;
 

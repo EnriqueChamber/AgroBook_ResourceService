@@ -5,10 +5,7 @@ import java.util.Set;
 
 import es.agrobook.api.model.explotacion.Explotacion;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor
@@ -20,8 +17,6 @@ public class Cultivo{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
-	
 
     @Column(nullable = false)
 	private Date fechaInicio;
@@ -45,17 +40,15 @@ public class Cultivo{
 	private float cantidadSemilla;
 
 	// DATOS AGRONOMICOS - Cultivo
-    @Column(name="secano", nullable = false)
+    @Column(nullable = false)
 	private String secanoRegadio; 			// Solo Doc     //Secano (SEC), aspersión (ASP), goteo o localizado (LOC), por gravedad (GRA).
 
     @Column(nullable = false)
 	private String ventilacion; 			// Solo Doc //Aire libre (AL), malla (M), cubierta bajo plástico (BP), invernadero (INV)
     
-
-    @ManyToOne() @MapsId()
+    @ManyToOne
 	private Explotacion explotacion;
 
-	
 	@OneToMany(mappedBy = "cultivo", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Tratamiento> tratamientos;
 	

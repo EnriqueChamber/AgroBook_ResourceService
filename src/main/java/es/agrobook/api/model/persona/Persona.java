@@ -27,7 +27,7 @@ public class Persona {
 
 	private String apellido2;
 
-	@OneToOne()@MapsId
+	@OneToOne
 	private PersonaGenero genero;
 
 	@Column(nullable = false)
@@ -36,35 +36,32 @@ public class Persona {
 	@Column(nullable = false)
 	private String direccion;
 
-	@OneToOne()@MapsId()
+	@OneToOne
 	private Municipio municipio;
 
 	@Column(nullable = false)
 	private int codigoPostal;
 
-	@OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(referencedColumnName = "id", nullable = false)
+	@OneToOne
 	private PersonaContacto contacto;
 
-	@OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(referencedColumnName = "id", nullable = false)
+	@OneToOne
 	private TipoAgricultor tipoAgricultor;
 
-	@OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(referencedColumnName = "id", nullable = false)
+	@OneToOne
 	private CapacitacionProfesional capacitacionProfesional;
 
 	
 	@Column(nullable = false)
 	private String noInscripcionRopo;
 
-
 	@Column(nullable = false)
 	private boolean empresa;
 
+	@Column(nullable = false)
 	private boolean asesor;
 	
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "persona")
+    @OneToMany(mappedBy = "persona")
 	private Set<PersonaExplotacion> personaExplotaciones;
 	
 }

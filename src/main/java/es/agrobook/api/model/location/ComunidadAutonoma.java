@@ -17,7 +17,7 @@ public class ComunidadAutonoma {
 	@Column(nullable = false)
 	private String descripcion;
 	
-	@OneToOne()
+	@OneToOne
 	private Pais pais;
 	
 

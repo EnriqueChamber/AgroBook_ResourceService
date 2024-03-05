@@ -34,18 +34,14 @@ public class Usuario implements UserDetails{
 	@Column(nullable = false)
 	private boolean enabled;
 
-	@OneToOne()
-	@MapsId()
+	@OneToOne
 	private Persona persona;
 	
 	@Column(nullable = false)
 	private boolean asesor;
 
-    
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> authorities;
-	
-	
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
