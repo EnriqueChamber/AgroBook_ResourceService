@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import es.agrobook.api.model.Parcela;
+import es.agrobook.api.model.location.Parcela;
 import es.agrobook.api.repository.ParcelaRepository;
 import lombok.RequiredArgsConstructor;
 

@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import es.agrobook.api.model.Explotacion;
 import es.agrobook.api.model.Usuario;
+import es.agrobook.api.model.explotacion.Explotacion;
 import es.agrobook.api.repository.ExplotacionRepository;
 import lombok.RequiredArgsConstructor;
 

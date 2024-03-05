@@ -23,12 +23,4 @@ public class Maquina{
 	private Date fechaAdquisicion;
 	private Date fechaUltimaInspeccion;
 
-	
-    /*@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "explotacion_parcela", joinColumns = @JoinColumn(name = "idparcela"), inverseJoinColumns = @JoinColumn(name = "idexplotacion"))
-	@JsonBackReference 
-	@JsonIgnore
-	private List<Explotacion> explotaciones;*/
-
-
 }

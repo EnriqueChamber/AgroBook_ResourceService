@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,14 +23,12 @@ public class AgrupacionPaises {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column()
 	private int id;
 
 	@Column(nullable = false)
 	private String descripcion;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(referencedColumnName = "id")
+	@OneToOne()
 	private Continente continente;
 	
 

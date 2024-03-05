@@ -21,6 +21,7 @@ public class PersonaGenero {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(length = 1)
 	private String codigo;
+	
 	@Column(nullable = false, length = 64)
 	private String descripcion;
 	

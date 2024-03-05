@@ -6,9 +6,10 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.agrobook.api.model.Explotacion;
 import es.agrobook.api.model.persona.Persona;
-import es.agrobook.api.model.PersonaExplotacion;
+import es.agrobook.api.model.persona.PersonaExplotacion;
+import es.agrobook.api.model.enums.PersonaExplotacionRelacion;
+import es.agrobook.api.model.explotacion.Explotacion;
 import es.agrobook.api.repository.PersonaExplotacionRepository;
 import es.agrobook.api.repository.PersonaRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class PersonaExplotacionService {
     private PersonaRepository personaRepository;
     
 
-    public PersonaExplotacion asociarPersonaConExplotacion(Persona persona, Explotacion explotacion, String relacion) {
+    public PersonaExplotacion asociarPersonaConExplotacion(Persona persona, Explotacion explotacion, PersonaExplotacionRelacion relacion) {
         PersonaExplotacion personaExplotacion = PersonaExplotacion.builder()
 			.persona(persona)
 			.explotacion(explotacion)
@@ -33,7 +34,7 @@ public class PersonaExplotacionService {
         return personaExplotacionRepository.save(personaExplotacion);
     }
 
-    public void eliminarAsociacion(Persona persona, Explotacion explotacion, String relacion) {
+    public void eliminarAsociacion(Persona persona, Explotacion explotacion, PersonaExplotacionRelacion relacion) {
         PersonaExplotacion personaExplotacion = PersonaExplotacion.builder()
 			.persona(persona)
 			.explotacion(explotacion)

@@ -1,24 +1,14 @@
 package es.agrobook.api.model.location;
 
-import es.agrobook.api.model.persona.Persona;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
+//@Table(uniqueConstraints = { @UniqueConstraint(name = "UniqueIdSigpacIdIneProvincia", columnNames = {"idSigpac", "idIne", "provincia"})})
 public class Municipio {
 	
 	@Id
@@ -34,8 +24,7 @@ public class Municipio {
 	@Column(nullable = false)
 	private String descripcion;
 
-	@OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(referencedColumnName = "id")
+	@OneToOne()
 	private Provincia provincia;
 	
 

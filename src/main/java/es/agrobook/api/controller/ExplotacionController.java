@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.agrobook.api.AgroBookApplication;
-import es.agrobook.api.model.Explotacion;
+import es.agrobook.api.model.explotacion.Explotacion;
 import es.agrobook.api.service.ExplotacionService;
 import lombok.RequiredArgsConstructor;
 

@@ -1,23 +1,10 @@
 package es.agrobook.api.model.persona;
 
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
-import es.agrobook.api.model.PersonaExplotacion;
 import es.agrobook.api.model.location.Municipio;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor
@@ -40,8 +27,7 @@ public class Persona {
 
 	private String apellido2;
 
-	@OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(referencedColumnName = "codigo")
+	@OneToOne()@MapsId
 	private PersonaGenero genero;
 
 	@Column(nullable = false)
@@ -50,8 +36,7 @@ public class Persona {
 	@Column(nullable = false)
 	private String direccion;
 
-	@OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(referencedColumnName = "id", nullable = false)
+	@OneToOne()@MapsId()
 	private Municipio municipio;
 
 	@Column(nullable = false)
@@ -65,8 +50,11 @@ public class Persona {
     @JoinColumn(referencedColumnName = "id", nullable = false)
 	private TipoAgricultor tipoAgricultor;
 
+	@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(referencedColumnName = "id", nullable = false)
+	private CapacitacionProfesional capacitacionProfesional;
 
-
+	
 	@Column(nullable = false)
 	private String noInscripcionRopo;
 

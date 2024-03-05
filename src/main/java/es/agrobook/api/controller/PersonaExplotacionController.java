@@ -1,29 +1,11 @@
 package es.agrobook.api.controller;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import es.agrobook.api.AgroBookApplication;
-import es.agrobook.api.model.Explotacion;
 import es.agrobook.api.model.Usuario;
-import es.agrobook.api.model.PersonaExplotacion;
-import es.agrobook.api.model.PersonaExplotacionId;
+import es.agrobook.api.model.explotacion.Explotacion;
+import es.agrobook.api.model.persona.PersonaExplotacion;
 import es.agrobook.api.service.ExplotacionService;
 import es.agrobook.api.service.PersonaExplotacionService;
 import es.agrobook.api.service.UsuarioService;
@@ -59,7 +41,7 @@ public class PersonaExplotacionController {
     }
 
     @PutMapping("/usuario-explotacion/{id}")
-    public ResponseEntity<Object> setUsuariosExplotacion(@PathVariable Long id, @RequestBody PersonaExplotacionId personaExplotacion) {
+    public ResponseEntity<Object> setUsuariosExplotacion(@PathVariable Long id, @RequestBody PersonaExplotacion.PersonaExplotacionId personaExplotacion) {
         try{
             if(personaExplotacion.getExplotacion() != id)
                 throw new Exception("id de explotación obtenido del PathVariable no coincide con el id de explotación del RequestBody");
@@ -79,7 +61,7 @@ public class PersonaExplotacionController {
     }
 
     @DeleteMapping("/usuario-explotacion/{id}")
-    public ResponseEntity<Object> removeUsuariosExplotacion(@PathVariable Long id, @RequestBody PersonaExplotacionId personaExplotacion) {
+    public ResponseEntity<Object> removeUsuariosExplotacion(@PathVariable Long id, @RequestBody PersonaExplotacion.PersonaExplotacionId personaExplotacion) {
         try{
             if(personaExplotacion.getExplotacion() != id)
                 throw new Exception("id de explotación obtenido del PathVariable no coincide con el id de explotación del RequestBody");

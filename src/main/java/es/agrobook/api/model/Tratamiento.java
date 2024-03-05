@@ -18,7 +18,9 @@ public class Tratamiento{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+
 	private String plaga;
+
 	private String justificacionActuacion;
 
 	// ALTERNATIVAS NO QUIMICAS
@@ -37,14 +39,7 @@ public class Tratamiento{
 
 
     @ManyToOne
-    @JoinColumn(name = "idcultivo")
+	@MapsId()
 	private Cultivo cultivo;
-
-	
-    /*@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "explotacion_parcela", joinColumns = @JoinColumn(name = "idparcela"), inverseJoinColumns = @JoinColumn(name = "idexplotacion"))
-	@JsonBackReference 
-	@JsonIgnore
-	private List<Explotacion> explotaciones;*/
 
 }
