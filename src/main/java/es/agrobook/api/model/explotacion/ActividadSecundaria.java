@@ -1,39 +1,34 @@
 package es.agrobook.api.model.explotacion;
 
-import es.agrobook.api.model.explotacion.ActividadSecundaria2doNivel.ActividadSecundaria2doNivelId;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@IdClass(ActividadSecundaria3erNivel.ActividadSecundaria3erNivelId.class)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-public class ActividadSecundaria3erNivel {
+public class ActividadSecundaria {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private byte id;
+	private long id;
 
 	@Column(nullable = false)
 	private String descripcion;
 
-	@Id
 	@ManyToOne(optional = false)
-	private ActividadSecundaria2doNivel actividad2doNivel;
+	private ActividadSecundaria3erNivel actividad;
+
+    @ManyToOne(optional = false)
+	private Explotacion explotacion;
+
+
+    @OneToOne
+	private RendimientoEconomico rendimientoEconomicos;
 
 
 
-	
-	@NoArgsConstructor
-    @AllArgsConstructor
-    @Data
-    @Builder
-    public static class ActividadSecundaria3erNivelId {
-        private byte id;
-        private ActividadSecundaria2doNivelId actividad2doNivel;
-    }
 
 	/*
 	

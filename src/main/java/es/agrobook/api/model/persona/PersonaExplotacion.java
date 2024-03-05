@@ -17,11 +17,11 @@ import lombok.*;
 public class PersonaExplotacion implements Serializable {
 
 	@Id
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Persona persona;
 
 	@Id
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Explotacion explotacion;
 
 	@Id

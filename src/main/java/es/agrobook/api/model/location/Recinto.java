@@ -40,7 +40,7 @@ public class Recinto {
 	// FIN REFERENCIAS SIGPAC
 
 
-    @ManyToOne
+    @ManyToOne(optional = false)
 	private Parcela parcela;
 
 }

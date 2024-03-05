@@ -12,10 +12,7 @@ public class ActividadSecundaria1erNivel {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-
-	@Column(nullable = false)
-	private int codigoIne;
+	private byte id;
 
 	@Column(nullable = false)
 	private String descripcion;

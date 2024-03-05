@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@IdClass(ActividadSecundaria2doNivel.ActividadSecundaria2doNivelId.class)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -13,16 +14,25 @@ public class ActividadSecundaria2doNivel {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-
-	@Column(nullable = false)
-	private int codigoIne;
+	private byte id;
 
 	@Column(nullable = false)
 	private String descripcion;
 
-	@ManyToOne
-	private ActividadSecundaria1erNivel actividad;
+	@Id
+	@ManyToOne(optional = false)
+	private ActividadSecundaria1erNivel actividad1erNivel;
+
+
+
+	@NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    @Builder
+    public static class ActividadSecundaria2doNivelId {
+        private byte id;
+        private byte actividad1erNivel;
+    }
 
 	/*
 	
@@ -41,16 +51,6 @@ public class ActividadSecundaria2doNivel {
 	4	Servicios	2	Conservación del paisaje
 	5	Otras actividades complementarias	1	Energías Renovables
 	5	Otras actividades complementarias	2	Otras actividades en que se utilizan la tierra y los medios de producción agraria
-
-
-
-
-	3	Actividad Agroturística y Cinegética	1	Restauración
-
-
-
-
-
 
 	 */
 	

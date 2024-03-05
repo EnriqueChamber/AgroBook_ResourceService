@@ -2,6 +2,7 @@ package es.agrobook.api.model.location;
 
 import java.util.Set;
 
+import es.agrobook.api.model.explotacion.Explotacion;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,7 +20,7 @@ public class Parcela{
 	@Column(nullable = false)
 	private String nombre;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Municipio municipio;
 
 	@Column(nullable = false)
@@ -39,16 +40,11 @@ public class Parcela{
 	
 	@Column(nullable = false)
 	private String referenciaCatastral;		// Solo Web
-	
 
 	//private float superficieZonaEspecifica;			// Solo Web
 	
-    /*@ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "explotacion_parcela", joinColumns = @JoinColumn(name = "parcela"), inverseJoinColumns = @JoinColumn(name = "explotacion"))
-	
-	@JsonBackReference 
-	@JsonIgnore
-	private List<Explotacion> explotaciones;*/
+    @ManyToMany
+	private Set<Explotacion> explotaciones;
 
 	@OneToMany(mappedBy = "parcela")
     private Set<Recinto> recintos;

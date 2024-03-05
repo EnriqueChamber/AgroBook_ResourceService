@@ -46,7 +46,7 @@ public class Cultivo{
     @Column(nullable = false)
 	private String ventilacion; 			// Solo Doc //Aire libre (AL), malla (M), cubierta bajo plástico (BP), invernadero (INV)
     
-    @ManyToOne
+    @ManyToOne(optional = false)
 	private Explotacion explotacion;
 
 	@OneToMany(mappedBy = "cultivo")

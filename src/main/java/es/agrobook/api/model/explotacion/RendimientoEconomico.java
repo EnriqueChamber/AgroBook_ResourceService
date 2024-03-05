@@ -18,14 +18,12 @@ public class RendimientoEconomico {
 	private int anyo;
 
 	@Column(nullable = false)
-	private float ingresosTitular;
-
-	@Column(nullable = false)
-	private float ingresosExplotacion;
+	private float ingresosBrutos;
 
 	
-    @ManyToOne
-	private Explotacion explotacion;
+    /* Desacoplado para que sea aplicable en el futuro a Actividades Secundarias
+	@ManyToOne(optional = false)
+	private Explotacion explotacion;*/
 
 
 	/*

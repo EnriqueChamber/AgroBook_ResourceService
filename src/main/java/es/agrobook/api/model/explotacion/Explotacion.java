@@ -41,10 +41,10 @@ public class Explotacion {
 	@Column(nullable = false)
 	private String direccion; 		
 	
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Municipio municipio;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private PersonaContacto contacto;
 
 	// Indicadores REA
@@ -66,30 +66,34 @@ public class Explotacion {
 	@Column(nullable = true)
 	private Date fechaBajaRea;
 	
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private CausaBaja causaBaja;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private TipoExplotacion clasificacion;
 
 	@Column(nullable = true)
 	private Date fechaClasificacion;
 
-
     @ManyToMany
-	private List<Parcela> parcelas;
-	
-    @OneToMany(mappedBy = "explotacion")
-	private List<Cultivo> cultivos;
-
-    @ManyToMany
-	private List<Maquina> maquinaria;
-
-    @OneToMany(mappedBy = "explotacion")
-	private Set<RendimientoEconomico> rendimientoEconomicos;
+	private Set<Parcela> parcelas;
 
     @OneToMany(mappedBy = "explotacion")
     private Set<PersonaExplotacion> personasExplotacion;
+	
+    @OneToMany(mappedBy = "explotacion")
+	private Set<Cultivo> cultivos;
+
+    @ManyToMany
+	private Set<Maquina> maquinaria;
+
+	
+
+    @OneToMany(mappedBy = "explotacion")
+    private Set<ActividadSecundaria> actividadesSecundarias;
+
+    @OneToMany //(mappedBy = "explotacion") Desacoplado para que sea aplicable en el futuro a Actividades Secundarias
+	private Set<RendimientoEconomico> rendimientoEconomicos;
 
 	
 	

@@ -17,7 +17,7 @@ public class Pais {
 	@Column(nullable = false)
 	private String descripcion;
 	
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private AgrupacionPaises agrupacionPaises;
 	
 

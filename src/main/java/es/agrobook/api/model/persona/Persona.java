@@ -2,6 +2,7 @@ package es.agrobook.api.model.persona;
 
 import java.util.*;
 
+import es.agrobook.api.model.explotacion.RendimientoEconomico;
 import es.agrobook.api.model.location.Municipio;
 import jakarta.persistence.*;
 import lombok.*;
@@ -27,7 +28,7 @@ public class Persona {
 
 	private String apellido2;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private PersonaGenero genero;
 
 	@Column(nullable = false)
@@ -36,19 +37,19 @@ public class Persona {
 	@Column(nullable = false)
 	private String direccion;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Municipio municipio;
 
 	@Column(nullable = false)
 	private int codigoPostal;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private PersonaContacto contacto;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private TipoAgricultor tipoAgricultor;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private CapacitacionProfesional capacitacionProfesional;
 
 	
@@ -63,5 +64,9 @@ public class Persona {
 	
     @OneToMany(mappedBy = "persona")
 	private Set<PersonaExplotacion> personaExplotaciones;
+
+	
+    @OneToMany
+	private Set<RendimientoEconomico> rendimientoEconomicos;
 	
 }

@@ -35,7 +35,7 @@ public class Tratamiento{
 
 	private String observaciones;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
 	private Cultivo cultivo;
 
 }
