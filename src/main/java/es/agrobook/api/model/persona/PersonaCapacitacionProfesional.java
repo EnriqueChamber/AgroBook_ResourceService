@@ -1,5 +1,7 @@
 package es.agrobook.api.model.persona;
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,14 +10,19 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class CapacitacionProfesional {
+public class PersonaCapacitacionProfesional {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@Column(nullable = false)
 	private String descripcion;
+
+
+	// Entidades enlazadas
+
+	@OneToMany(mappedBy = "capacitacionProfesional")
+	private Set<Persona> personas;
 
 	/*
 	

@@ -1,5 +1,11 @@
 package es.agrobook.api.model.location;
 
+import java.util.Set;
+
+import es.agrobook.api.model.cultivo.DenominacionOrigen;
+import es.agrobook.api.model.edificacion.Edificacion;
+import es.agrobook.api.model.explotacion.Explotacion;
+import es.agrobook.api.model.persona.Persona;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +18,6 @@ import lombok.*;
 public class Municipio {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(nullable = false)
@@ -27,6 +32,20 @@ public class Municipio {
 	@ManyToOne(optional = false)
 	private Provincia provincia;
 	
+
+	// Entidades enlazadas
+	
+    @ManyToMany
+    private Set<DenominacionOrigen> denominacionesOrigen;
+
+	@OneToMany(mappedBy = "municipio")
+	private Set<Explotacion> explotaciones;
+
+	@OneToMany(mappedBy = "municipio")
+	private Set<ParcelaSigpac> parcelasSigpac;
+
+	@OneToMany(mappedBy = "municipio")
+	private Set<Persona> personas;
 
 	/*
 	Provincia	Municipio INE	Municipio	Nombre Municipio

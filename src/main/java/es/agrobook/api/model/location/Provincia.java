@@ -1,5 +1,7 @@
 package es.agrobook.api.model.location;
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +13,6 @@ import lombok.*;
 public class Provincia {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(nullable = false)
@@ -19,6 +20,12 @@ public class Provincia {
 
 	@ManyToOne(optional = false)
 	private ComunidadAutonoma comunidadAutonoma;
+
+
+	// Entidades enlazadas
+
+	@OneToMany(mappedBy = "provincia")
+	private Set<Municipio> municipios;
 	
 
 	/*

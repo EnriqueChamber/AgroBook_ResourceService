@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import es.agrobook.api.model.location.Parcela;
+import es.agrobook.api.model.location.ParcelaSigpac;
 import es.agrobook.api.repository.ParcelaRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -17,11 +17,11 @@ public class ParcelaService{
 
     
 
-	public Optional<Parcela> findById(Long id) {
+	public Optional<ParcelaSigpac> findById(Long id) {
 		return parcelaRepository.findById(id);
 	}
 
-	public Parcela saveAndFlush(Parcela parcela) {
+	public ParcelaSigpac saveAndFlush(ParcelaSigpac parcela) {
 		return parcelaRepository.saveAndFlush(parcela);
 	}
 }

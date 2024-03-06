@@ -2,6 +2,7 @@ package es.agrobook.api.model.location;
 
 import java.util.Set;
 
+import es.agrobook.api.model.edificacion.Edificacion;
 import es.agrobook.api.model.explotacion.Explotacion;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class Parcela{
+public class ParcelaSigpac{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,11 +43,14 @@ public class Parcela{
 	private String referenciaCatastral;		// Solo Web
 
 	//private float superficieZonaEspecifica;			// Solo Web
-	
-    @ManyToMany
+
+
+	// Entidades enlazadas
+
+	@ManyToMany
 	private Set<Explotacion> explotaciones;
 
-	@OneToMany(mappedBy = "parcela")
-    private Set<Recinto> recintos;
+	@OneToMany(mappedBy = "parcelaSigpac")
+    private Set<RecintoSigpac> recintosSigpac;
 
 }

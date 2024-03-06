@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class Recinto {
+public class RecintoSigpac {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +41,6 @@ public class Recinto {
 
 
     @ManyToOne(optional = false)
-	private Parcela parcela;
+	private ParcelaSigpac parcelaSigpac;
 
 }

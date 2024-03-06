@@ -1,5 +1,8 @@
 package es.agrobook.api.model.location;
 
+import java.util.Set;
+
+import es.agrobook.api.model.edificacion.Edificacion;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,11 +14,16 @@ import lombok.*;
 public class Continente {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(nullable = false)
 	private String descripcion;
+
+
+	// Entidades enlazadas
+
+	@OneToMany(mappedBy = "continente")
+	private Set<AgrupacionPaises> agrupacionesPaises;
 	
 
 	/*

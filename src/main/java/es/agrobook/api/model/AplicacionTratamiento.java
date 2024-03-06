@@ -1,5 +1,7 @@
 package es.agrobook.api.model;
 
+import es.agrobook.api.model.cultivo.Cultivo;
+import es.agrobook.api.model.edificacion.Edificacion;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class Tratamiento{
+public class AplicacionTratamiento{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +37,10 @@ public class Tratamiento{
 
 	private String observaciones;
 
-    @ManyToOne(optional = false)
+
+	// Entidades enlazadas
+
+	@ManyToOne(optional = false)
 	private Cultivo cultivo;
 
 }

@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import es.agrobook.api.model.Cultivo;
+import es.agrobook.api.model.cultivo.Cultivo;
 import es.agrobook.api.repository.CultivoRepository;
 import lombok.RequiredArgsConstructor;
 

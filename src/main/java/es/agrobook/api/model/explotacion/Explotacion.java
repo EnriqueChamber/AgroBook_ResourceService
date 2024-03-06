@@ -1,14 +1,16 @@
 package es.agrobook.api.model.explotacion;
 
 import java.sql.Date;
-import java.util.List;
 import java.util.Set;
 
-import es.agrobook.api.model.Cultivo;
 import es.agrobook.api.model.Maquina;
+import es.agrobook.api.model.RendimientoEconomico;
+import es.agrobook.api.model.cultivo.CausaBaja;
+import es.agrobook.api.model.cultivo.Cultivo;
+import es.agrobook.api.model.edificacion.Edificacion;
 import es.agrobook.api.model.location.Municipio;
-import es.agrobook.api.model.location.Parcela;
-import es.agrobook.api.model.persona.PersonaContacto;
+import es.agrobook.api.model.location.ParcelaSigpac;
+import es.agrobook.api.model.persona.Contacto;
 import es.agrobook.api.model.persona.PersonaExplotacion;
 import jakarta.persistence.*;
 import lombok.*;
@@ -45,7 +47,7 @@ public class Explotacion {
 	private Municipio municipio;
 
 	@ManyToOne(optional = false)
-	private PersonaContacto contacto;
+	private Contacto contacto;
 
 	// Indicadores REA
 	@Column(nullable = true)
@@ -62,21 +64,25 @@ public class Explotacion {
 
 	@Column(nullable = true)
 	private boolean ventaDirecta;
+	
+
+
+	@ManyToOne(optional = true)
+	private CausaBaja causaBaja;
 
 	@Column(nullable = true)
 	private Date fechaBajaRea;
+
 	
-	@ManyToOne(optional = false)
-	private CausaBaja causaBaja;
 
 	@ManyToOne(optional = false)
-	private TipoExplotacion clasificacion;
+	private ExplotacionClasificacion clasificacion;
 
 	@Column(nullable = true)
 	private Date fechaClasificacion;
 
     @ManyToMany
-	private Set<Parcela> parcelas;
+	private Set<ParcelaSigpac> parcelas;
 
     @OneToMany(mappedBy = "explotacion")
     private Set<PersonaExplotacion> personasExplotacion;
@@ -85,15 +91,18 @@ public class Explotacion {
 	private Set<Cultivo> cultivos;
 
     @ManyToMany
-	private Set<Maquina> maquinaria;
+	private Set<Maquina> maquinas;
+
+    @ManyToMany
+	private Set<Edificacion> edificaciones;
 
 	
 
     @OneToMany(mappedBy = "explotacion")
-    private Set<ActividadSecundaria> actividadesSecundarias;
+    private Set<ExplotacionActividadSecundaria> actividadesSecundarias;
 
     @OneToMany //(mappedBy = "explotacion") Desacoplado para que sea aplicable en el futuro a Actividades Secundarias
-	private Set<RendimientoEconomico> rendimientoEconomicos;
+	private Set<RendimientoEconomico> rendimientosEconomicos;
 
 	
 	

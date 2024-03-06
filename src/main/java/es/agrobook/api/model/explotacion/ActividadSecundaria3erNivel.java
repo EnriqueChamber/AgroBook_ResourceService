@@ -13,7 +13,6 @@ import lombok.*;
 public class ActividadSecundaria3erNivel {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private byte id;
 
 	@Column(nullable = false)

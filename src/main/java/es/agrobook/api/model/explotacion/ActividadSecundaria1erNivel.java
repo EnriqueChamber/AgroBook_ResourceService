@@ -1,5 +1,7 @@
 package es.agrobook.api.model.explotacion;
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,11 +13,13 @@ import lombok.*;
 public class ActividadSecundaria1erNivel {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private byte id;
 
 	@Column(nullable = false)
 	private String descripcion;
+
+	@OneToMany(mappedBy = "actividad1erNivel")
+    private Set<ActividadSecundaria2doNivel> actividades2doNivel;
 
 	/*
 	

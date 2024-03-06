@@ -1,7 +1,9 @@
 package es.agrobook.api.model;
 
 import java.util.Date;
+import java.util.Set;
 
+import es.agrobook.api.model.explotacion.Explotacion;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,5 +29,11 @@ public class Maquina{
 
     @Column(nullable = false)
 	private Date fechaUltimaInspeccion;
+
+
+	// Entidades enlazadas
+
+	@ManyToMany
+	private Set<Explotacion> explotaciones;
 
 }

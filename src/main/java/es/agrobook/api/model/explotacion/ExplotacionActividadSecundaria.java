@@ -1,5 +1,6 @@
 package es.agrobook.api.model.explotacion;
 
+import es.agrobook.api.model.RendimientoEconomico;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,10 +9,9 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class ActividadSecundaria {
+public class ExplotacionActividadSecundaria {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@Column(nullable = false)
@@ -23,9 +23,8 @@ public class ActividadSecundaria {
     @ManyToOne(optional = false)
 	private Explotacion explotacion;
 
-
-    @OneToOne
-	private RendimientoEconomico rendimientoEconomicos;
+    @OneToOne(optional = true)
+	private RendimientoEconomico rendimientoEconomico;
 
 
 

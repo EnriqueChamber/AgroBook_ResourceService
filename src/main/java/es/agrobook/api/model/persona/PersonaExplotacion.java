@@ -31,7 +31,7 @@ public class PersonaExplotacion implements Serializable {
 	@Column(nullable = false)
     private Date fechaInicio;
 
-    private float participacion;
+    private float participacion; // Gerente -> UTAs desempeñadas
 
     @NoArgsConstructor
     @AllArgsConstructor

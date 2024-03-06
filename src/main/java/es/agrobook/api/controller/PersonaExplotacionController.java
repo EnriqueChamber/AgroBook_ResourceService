@@ -50,7 +50,7 @@ public class PersonaExplotacionController {
             if(explotacion == null)
                 throw new EntityNotFoundException();
 
-            Usuario usuario = usuarioService.loadUserByUId(personaExplotacion.getPersona());
+            Usuario usuario = usuarioService.loadUserByUId(personaExplotacion.getPersona()); // Pte cambiar a Persona
             PersonaExplotacion personaExplotacionRes = personaExplotacionService.asociarPersonaConExplotacion(usuario.getPersona(), explotacion, personaExplotacion.getRelacion());
                 
             return ResponseEntity.ok(personaExplotacionRes);
@@ -70,7 +70,7 @@ public class PersonaExplotacionController {
             if(explotacion == null)
                 throw new EntityNotFoundException();
 
-            Usuario usuario = usuarioService.loadUserByUId(personaExplotacion.getPersona());
+            Usuario usuario = usuarioService.loadUserByUId(personaExplotacion.getPersona());// Pte cambiar a Persona
             personaExplotacionService.eliminarAsociacion(usuario.getPersona(), explotacion, personaExplotacion.getRelacion());
                 
             return ResponseEntity.ok("relación eliminada correctamente");

@@ -1,4 +1,4 @@
-package es.agrobook.api.model.explotacion;
+package es.agrobook.api.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,14 +8,25 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class CausaBaja {
+public class RendimientoEconomico {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@Column(nullable = false)
-	private String descripcion;
+	private int anyo;
+
+	@Column(nullable = false)
+	private float ingresosBrutos;
+
+	@Column(nullable = true)
+	private float ingresosNetos;
+
+	@Column(nullable = true)
+	private float gastos;
+
+
 
 	/*
 	

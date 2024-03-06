@@ -2,7 +2,6 @@ package es.agrobook.api.model.persona;
 
 import java.util.Set;
 
-import es.agrobook.api.model.edificacion.Edificacion;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,32 +10,29 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class PersonaGenero {
+public class PersonaRegimenMatrimonial {
 	
 	@Id
-	@Column(length = 1)
+	@Column(length = 2)
 	private String codigo;
-	
+
 	@Column(nullable = false)
 	private String descripcion;
 
 
 	// Entidades enlazadas
 
-	@OneToMany(mappedBy = "genero")
+	@OneToMany(mappedBy = "regimenMatrimonial")
 	private Set<Persona> personas;
-	
 
 	/*
+	
 	Código	Descripción
-	I	Intersexual
-	M	Mujer
-	V	Varón
-	0	Hombre
-	1	Mujer
-	2	no binario
-	3	Priefiero no decirlo
-	4	Sin prevalencia
+	PA	Participación
+	SB	Separación de bienes
+	SG	Sociedad de gananciales
+
 
 	 */
+	
 }

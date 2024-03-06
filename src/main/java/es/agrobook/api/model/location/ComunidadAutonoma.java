@@ -1,5 +1,8 @@
 package es.agrobook.api.model.location;
 
+import java.util.Set;
+
+import es.agrobook.api.model.cultivo.Cultivo;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,34 +14,44 @@ import lombok.*;
 public class ComunidadAutonoma {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int idCatastro;
+
+	@Column(nullable = false)
+	private int idINE;
 
 	@Column(nullable = false)
 	private String descripcion;
 	
 	@ManyToOne(optional = false)
 	private Pais pais;
+
+
+	// Entidades enlazadas
+
+	@OneToMany(mappedBy = "comunidadAutonoma")
+	private Set<Provincia> provincias;
 	
 
 	/*
-	Id	Descripción
-	1	ANDALUCIA
-	2	ARAGÓN
-	3	PRINCIPADO DE ASTURIAS
-	4	ISLAS BALEARES
-	5	ISLAS CANARIAS
-	6	CANTABRIA
-	7	CASTILLA LA MANCHA
-	8	CASTILLA Y LEÓN
-	9	CATALUÑA
-	10	EXTREMADURA
-	11	GALICIA
-	12	COMUNIDAD DE MADRID
-	13	REGION DE MURCIA
-	14	COMUNIDAD FORAL DE NAVARRA
-	15	PAIS VASCO
-	16	LA RIOJA
-	17	COMUNIDAD VALENCIANA
+	Código catastro	Código INE	Descripción
+	0		Comunidad Desconocida
+	1	1	Comunidad Autónoma de Andalucía
+	2	2	Comunidad Autónoma de Aragón
+	3	3	Principado de Asturias
+	4	4	Comunidad Autónoma de Illes Balears
+	5	5	Comunidad Autónoma de Canarias
+	6	6	Comunidad Autónoma de Cantabria
+	7	8	Comunidad Autónoma de Castilla-La Mancha
+	8	7	Comunidad Autónoma de Castilla y León
+	9	9	Comunidad Autónoma de Cataluña
+	10	11	Comunidad Autónoma de Extremadura
+	11	12	Comunidad Autónoma de Galicia
+	12	13	Comunidad de Madrid
+	13	14	Región de Murcia
+	14	15	Comunidad Foral de Navarra
+	15	16	Comunidad Autónoma del País Vasco
+	16	17	Comunidad Autónoma de La Rioja
+	17	10	Comunidad Valenciana
+
 	 */
 }
