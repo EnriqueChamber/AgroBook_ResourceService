@@ -15,7 +15,6 @@ import lombok.*;
 public class DenominacionOrigen {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
     @Enumerated(EnumType.STRING)
@@ -30,9 +29,6 @@ public class DenominacionOrigen {
 
     @ManyToOne(optional = false)
 	private IndicacionGeograficaSubclase subclase;
-
-	
-	// Entidades enlazadas
 
     @ManyToMany
 	private Set<Municipio> municipios;

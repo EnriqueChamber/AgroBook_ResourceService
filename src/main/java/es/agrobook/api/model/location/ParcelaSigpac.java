@@ -47,7 +47,7 @@ public class ParcelaSigpac{
 
 	// Entidades enlazadas
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "parcelasSigpac")
 	private Set<Explotacion> explotaciones;
 
 	@OneToMany(mappedBy = "parcelaSigpac")

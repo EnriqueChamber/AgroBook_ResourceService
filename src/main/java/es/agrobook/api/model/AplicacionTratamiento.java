@@ -1,7 +1,6 @@
 package es.agrobook.api.model;
 
 import es.agrobook.api.model.cultivo.Cultivo;
-import es.agrobook.api.model.edificacion.Edificacion;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,9 +35,6 @@ public class AplicacionTratamiento{
 	private String eficacia;
 
 	private String observaciones;
-
-
-	// Entidades enlazadas
 
 	@ManyToOne(optional = false)
 	private Cultivo cultivo;

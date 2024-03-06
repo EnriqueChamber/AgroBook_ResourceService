@@ -82,7 +82,7 @@ public class Explotacion {
 	private Date fechaClasificacion;
 
     @ManyToMany
-	private Set<ParcelaSigpac> parcelas;
+	private Set<ParcelaSigpac> parcelasSigpac;
 
     @OneToMany(mappedBy = "explotacion")
     private Set<PersonaExplotacion> personasExplotacion;

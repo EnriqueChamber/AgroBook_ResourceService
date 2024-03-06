@@ -33,7 +33,7 @@ public class Maquina{
 
 	// Entidades enlazadas
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "maquinas")
 	private Set<Explotacion> explotaciones;
 
 }

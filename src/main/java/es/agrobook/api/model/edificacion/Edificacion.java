@@ -2,6 +2,7 @@ package es.agrobook.api.model.edificacion;
 
 import java.util.Set;
 
+import es.agrobook.api.model.cultivo.Cultivo;
 import es.agrobook.api.model.explotacion.Explotacion;
 import jakarta.persistence.*;
 import lombok.*;
@@ -41,9 +42,10 @@ public class Edificacion{
     @Column(nullable = false)
 	private int anyoConstruccion;
 
-    
 
-    @ManyToMany
+	// Entidades enlazadas
+
+    @ManyToMany(mappedBy = "edificaciones")
 	private Set<Explotacion> explotaciones;
 	
 
