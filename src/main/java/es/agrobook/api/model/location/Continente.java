@@ -14,7 +14,7 @@ import lombok.*;
 public class Continente {
 	
 	@Id
-	private int id;
+	private byte id;
 
 	@Column(nullable = false)
 	private String descripcion;

@@ -16,7 +16,7 @@ public class CultivoDestino {
 	private byte codigo;
 
     @Column(nullable = false)
-	private String destino;
+	private String descripcion;
 
 
 	// Entidades enlazadas

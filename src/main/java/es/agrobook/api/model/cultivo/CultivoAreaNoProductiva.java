@@ -10,12 +10,12 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class AreaNoProductiva {
+public class CultivoAreaNoProductiva {
 
 	@Id
-	private long id;
+	private byte id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 3)
 	private String codigo;
 
     @Column(nullable = false)
@@ -26,7 +26,7 @@ public class AreaNoProductiva {
 	// Entidades enlazadas
 
 	@OneToMany(mappedBy = "areaNoProductiva")
-	private Set<SuperficieNoProductiva> superficiesNoProductivas;
+	private Set<CultivoSuperficieNoProductiva> superficiesNoProductivas;
 
 
 	/*

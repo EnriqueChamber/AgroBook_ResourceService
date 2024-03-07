@@ -2,7 +2,6 @@ package es.agrobook.api.model.location;
 
 import java.util.Set;
 
-import es.agrobook.api.model.edificacion.Edificacion;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,7 +15,7 @@ public class Pais {
 	@Id
 	private int id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 4)
 	private String codigo;
 
 	@Column(nullable = false)

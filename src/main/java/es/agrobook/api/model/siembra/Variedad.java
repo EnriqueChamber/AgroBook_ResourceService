@@ -1,7 +1,8 @@
-package es.agrobook.api.model.cultivo;
+package es.agrobook.api.model.siembra;
 
 import java.util.Set;
 
+import es.agrobook.api.model.cultivo.Cultivo;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,7 +14,7 @@ import lombok.*;
 public class Variedad {
 
 	@Id
-	private long id;
+	private int id;
 
     @Column(nullable = false)
 	private String descripcion;

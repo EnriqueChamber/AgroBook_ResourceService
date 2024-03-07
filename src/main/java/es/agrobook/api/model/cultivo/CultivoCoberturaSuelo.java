@@ -10,10 +10,10 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class CoberturaSuelo {
+public class CultivoCoberturaSuelo {
 
 	@Id
-	private int id;
+	private byte id;
 
     @Column(nullable = false)
 	private String descripcion;

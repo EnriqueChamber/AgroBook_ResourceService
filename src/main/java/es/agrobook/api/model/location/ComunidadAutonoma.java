@@ -14,10 +14,10 @@ import lombok.*;
 public class ComunidadAutonoma {
 	
 	@Id
-	private int idCatastro;
+	private byte idCatastro;
 
 	@Column(nullable = false)
-	private int idINE;
+	private byte idINE;
 
 	@Column(nullable = false)
 	private String descripcion;

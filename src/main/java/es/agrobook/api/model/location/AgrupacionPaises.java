@@ -11,7 +11,7 @@ import lombok.*;
 public class AgrupacionPaises {
 	
 	@Id
-	private int id;
+	private byte id;
 
 	@Column(nullable = false)
 	private String descripcion;

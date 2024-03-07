@@ -24,9 +24,6 @@ public class Edificacion{
 	@ManyToOne(optional = false)
 	private EdificacionClasificacion clasificacion;
 
-	@ManyToOne(optional = false)
-	private EdificacionTipologia tipologia;
-
     @Column(nullable = false)
 	private String referenciaCatastral;
 

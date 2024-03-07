@@ -13,7 +13,7 @@ import lombok.*;
 public class PersonaTipoAgricultor {
 	
 	@Id
-	private long id;
+	private byte id;
 
 	@Column(nullable = false)
 	private String descripcion;

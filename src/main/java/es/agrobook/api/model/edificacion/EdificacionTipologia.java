@@ -23,7 +23,7 @@ public class EdificacionTipologia{
 	// Entidades enlazadas
 
 	@OneToMany(mappedBy = "tipologia")
-	private Set<Edificacion> edificaciones;
+	private Set<EdificacionClasificacion> clasificaciones;
 
    /*
 	* 

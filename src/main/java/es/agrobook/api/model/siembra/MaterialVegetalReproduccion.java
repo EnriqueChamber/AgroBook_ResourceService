@@ -1,7 +1,8 @@
-package es.agrobook.api.model.cultivo;
+package es.agrobook.api.model.siembra;
 
 import java.util.Set;
 
+import es.agrobook.api.model.cultivo.Cultivo;
 import es.agrobook.api.model.enums.TipoMaterialVegetalReproduccion;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +15,7 @@ import lombok.*;
 public class MaterialVegetalReproduccion {
 
 	@Id
-	private long id;
+	private byte id;
 
 	@Id
     @Enumerated(EnumType.STRING)

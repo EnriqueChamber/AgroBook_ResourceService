@@ -10,20 +10,20 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class SuperficieNoProductiva {
+public class CultivoActividadAgraria {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private byte id;
 
     @Column(nullable = false)
-	private float superficie;
+	private String descripcion;
 
-    @ManyToOne
-	private AreaNoProductiva areaNoProductiva;
 
-	@ManyToOne(optional = false)
-	private Cultivo cultivo;
+	
+	// Entidades enlazadas
+	
+	@OneToMany(mappedBy = "actividadAgraria")
+	private Set<Cultivo> cultivos;
 
 
 	/*

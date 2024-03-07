@@ -3,9 +3,9 @@ package es.agrobook.api.model.explotacion;
 import java.sql.Date;
 import java.util.Set;
 
+import es.agrobook.api.model.CausaBaja;
 import es.agrobook.api.model.Maquina;
 import es.agrobook.api.model.RendimientoEconomico;
-import es.agrobook.api.model.cultivo.CausaBaja;
 import es.agrobook.api.model.cultivo.Cultivo;
 import es.agrobook.api.model.edificacion.Edificacion;
 import es.agrobook.api.model.location.Municipio;

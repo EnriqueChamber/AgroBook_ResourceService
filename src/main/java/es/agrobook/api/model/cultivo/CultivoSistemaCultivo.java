@@ -16,7 +16,7 @@ public class CultivoSistemaCultivo {
 	private byte codigo;
 
     @Column(nullable = false)
-	private String sistema;
+	private String descripcion;
 
 
 	// Entidades enlazadas

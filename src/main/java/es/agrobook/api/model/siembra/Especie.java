@@ -1,4 +1,4 @@
-package es.agrobook.api.model.cultivo;
+package es.agrobook.api.model.siembra;
 
 import java.util.Set;
 
@@ -13,7 +13,7 @@ import lombok.*;
 public class Especie {
 
 	@Id
-	private long id;
+	private int id;
 
     @Column(nullable = false)
 	private String descripcion;

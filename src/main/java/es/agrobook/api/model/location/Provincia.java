@@ -13,7 +13,7 @@ import lombok.*;
 public class Provincia {
 	
 	@Id
-	private int id;
+	private byte id;
 
 	@Column(nullable = false)
 	private String descripcion;

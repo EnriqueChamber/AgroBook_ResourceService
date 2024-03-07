@@ -13,7 +13,7 @@ import lombok.*;
 public class PersonaCapacitacionProfesional {
 	
 	@Id
-	private long id;
+	private byte id;
 
 	@Column(nullable = false)
 	private String descripcion;

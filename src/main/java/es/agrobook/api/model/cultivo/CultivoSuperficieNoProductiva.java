@@ -1,7 +1,5 @@
 package es.agrobook.api.model.cultivo;
 
-import java.util.Set;
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,20 +8,20 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class ActividadAgraria {
+public class CultivoSuperficieNoProductiva {
 
 	@Id
-	private byte id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
     @Column(nullable = false)
-	private String descripcion;
+	private float superficie;
 
+    @ManyToOne(optional = false)
+	private CultivoAreaNoProductiva areaNoProductiva;
 
-	
-	// Entidades enlazadas
-	
-	@OneToMany(mappedBy = "actividadAgraria")
-	private Set<Cultivo> cultivos;
+	@ManyToOne(optional = false)
+	private Cultivo cultivo;
 
 
 	/*

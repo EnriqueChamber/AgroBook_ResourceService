@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.Set;
 
 import es.agrobook.api.model.AplicacionTratamiento;
+import es.agrobook.api.model.CausaBaja;
 import es.agrobook.api.model.enums.TipoCertificacionEcologica;
 import es.agrobook.api.model.explotacion.Explotacion;
+import es.agrobook.api.model.siembra.Siembra;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,25 +23,10 @@ public class Cultivo{
 	private long id;
 
 	@ManyToOne(optional = false)
-    private Variedad variedad;
-
-	@ManyToOne(optional = false)
-	private MaterialVegetalReproduccion materialVegetalReproduccion;
-
-	@ManyToOne(optional = false)
-    private ActividadAgraria actividadAgraria;
+    private CultivoActividadAgraria actividadAgraria;
 
     @Column(nullable = false)
 	private Date fechaInicio;
-
-    @Column(nullable = true)
-	private Date fechaSiembra;
-
-    @Column(nullable = true)
-	private boolean simbraDirecta;
-
-    @Column(nullable = true)
-	private float cantidadSemilla;
 
     @Column(nullable = true)
 	private Date fechaFinalizacion;
@@ -58,32 +45,10 @@ public class Cultivo{
 	private CultivoDestino destino;
 
 	@ManyToOne(optional = false)
-	private CoberturaSuelo coberturaSuelo;
+	private CultivoCoberturaSuelo coberturaSuelo;
 
 	@ManyToOne(optional = false)
 	private CultivoAprovechamiento aprovechamiento;
-	
-
-
-    @Column(nullable = true)
-	private int cantidadArboles;
-
-    @Column(nullable = true)
-	private String marcoPlantacion;
-
-	/*
-	Nº Arboles de tipo:
-	Almendros. 
-	Avellanos.  
-	Algarrobos.
-	Castaños. 
-	Pistacheros.
-	Nogales.  
-	Otros.  
-
-	*/
-
-
 
 	@ManyToOne(optional = false)
     private CultivoSistemaExplotacion sistemaExplotacion;
@@ -93,7 +58,7 @@ public class Cultivo{
 	private float superficie;
 
 	@OneToMany(mappedBy = "cultivo")
-    private Set<SuperficieNoProductiva> superficiesNoProductivas;
+    private Set<CultivoSuperficieNoProductiva> superficiesNoProductivas;
 
 
 
@@ -110,6 +75,11 @@ public class Cultivo{
     
     @ManyToOne(optional = false)
 	private Explotacion explotacion;
+
+	
+
+	@OneToMany(mappedBy = "cultivo")
+    private Set<Siembra> siembras;
 
 	@OneToMany(mappedBy = "cultivo")
     private Set<AplicacionTratamiento> aplicacionesTratamientos;

@@ -1,7 +1,8 @@
-package es.agrobook.api.model.cultivo;
+package es.agrobook.api.model;
 
 import java.util.Set;
 
+import es.agrobook.api.model.cultivo.Cultivo;
 import es.agrobook.api.model.explotacion.Explotacion;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +15,7 @@ import lombok.*;
 public class CausaBaja {
 	
 	@Id
-	private long id;
+	private byte id;
 
 	@Column(nullable = false)
 	private String descripcion;
