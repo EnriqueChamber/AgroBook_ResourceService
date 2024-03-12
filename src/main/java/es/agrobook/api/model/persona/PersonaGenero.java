@@ -2,7 +2,7 @@ package es.agrobook.api.model.persona;
 
 import java.util.Set;
 
-import es.agrobook.api.model.edificacion.Edificacion;
+import es.agrobook.api.model.catastro.Edificacion;
 import jakarta.persistence.*;
 import lombok.*;
 

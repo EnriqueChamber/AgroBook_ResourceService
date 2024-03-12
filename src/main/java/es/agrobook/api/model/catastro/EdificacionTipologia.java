@@ -1,4 +1,4 @@
-package es.agrobook.api.model.edificacion;
+package es.agrobook.api.model.catastro;
 
 import java.util.Set;
 

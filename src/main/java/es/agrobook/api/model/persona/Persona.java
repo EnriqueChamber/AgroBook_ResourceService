@@ -18,17 +18,21 @@ public class Persona {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	//#region campos SIEX
+
 	@Column(nullable = false)
 	private String nif;
 
 	@Column(nullable = false)
 	private String nombre;
 
+	@Column(nullable = true)
 	private String apellido1;
 
+	@Column(nullable = true)
 	private String apellido2;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private PersonaGenero genero;
 
 	@Column(nullable = false)
@@ -44,7 +48,21 @@ public class Persona {
 	private int codigoPostal;
 
 	@ManyToOne(optional = false)
-	private Contacto contacto;
+	private PersonaContacto contacto;
+
+	@ManyToOne(optional = true)
+	private PersonaTipoAgricultor tipoAgricultor; // SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Datos del Titular / Datos asociaciones, socios...
+
+	@ManyToOne(optional = true)
+	private PersonaTipoTitular tipoTitular; // SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Datos del Titular
+
+	@ManyToOne(optional = true)
+	private PersonaRegimenMatrimonial regimenMatrimonial; // SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Datos del Titular
+
+	@ManyToOne(optional = true)
+	private PersonaCapacitacionProfesional capacitacionProfesional; // SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Datos del Gerente
+
+	//#endregion
 	
 	@Column(nullable = false)
 	private String noInscripcionRopo;
@@ -56,15 +74,6 @@ public class Persona {
 	private boolean asesor;
 
 
-
-	@ManyToOne(optional = true)
-	private PersonaTipoAgricultor tipoAgricultor;
-
-	@ManyToOne(optional = true)
-	private PersonaCapacitacionProfesional capacitacionProfesional;
-
-	@ManyToOne(optional = true)
-	private PersonaRegimenMatrimonial regimenMatrimonial;
 
 	@ManyToOne(optional = true)
 	private PersonaTipoAsociacion tipoAsociacion;

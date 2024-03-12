@@ -1,7 +1,6 @@
 package es.agrobook.api.model;
 
 import java.util.Date;
-import java.util.Set;
 
 import es.agrobook.api.model.explotacion.Explotacion;
 import jakarta.persistence.*;
@@ -20,9 +19,16 @@ public class Maquina{
 	
     @Column(nullable = false)
 	private String descripcion;
+	
+	
+
+	//#region campos SIEX
 
     @Column(nullable = false)
-	private String noInscripcionRoma;
+	private String noInscripcionRoma; // SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Rendimiento Datos de maquinaria y equipos
+
+	//#endregion
+	
 
     @Column(nullable = false)
 	private Date fechaAdquisicion;
@@ -30,10 +36,10 @@ public class Maquina{
     @Column(nullable = false)
 	private Date fechaUltimaInspeccion;
 
+    @ManyToOne(optional = false)
+	private Explotacion explotacion;
+
 
 	// Entidades enlazadas
-
-	@ManyToMany(mappedBy = "maquinas")
-	private Set<Explotacion> explotaciones;
 
 }

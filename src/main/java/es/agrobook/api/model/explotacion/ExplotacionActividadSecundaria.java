@@ -1,6 +1,9 @@
 package es.agrobook.api.model.explotacion;
 
+import java.util.Set;
+
 import es.agrobook.api.model.RendimientoEconomico;
+import es.agrobook.api.model.cultivo.Cultivo;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,8 +26,8 @@ public class ExplotacionActividadSecundaria {
     @ManyToOne(optional = false)
 	private Explotacion explotacion;
 
-    @OneToOne(optional = true)
-	private RendimientoEconomico rendimientoEconomico;
+	@OneToMany
+	private Set<RendimientoEconomico> rendimientosEconomicos;  // SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Rendimiento Económico
 
 
 

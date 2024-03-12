@@ -2,8 +2,8 @@ package es.agrobook.api.model.location;
 
 import java.util.Set;
 
+import es.agrobook.api.model.catastro.Edificacion;
 import es.agrobook.api.model.cultivo.DenominacionOrigen;
-import es.agrobook.api.model.edificacion.Edificacion;
 import es.agrobook.api.model.explotacion.Explotacion;
 import es.agrobook.api.model.persona.Persona;
 import jakarta.persistence.*;

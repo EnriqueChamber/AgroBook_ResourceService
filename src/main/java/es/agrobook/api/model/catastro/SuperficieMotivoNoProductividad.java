@@ -1,9 +1,7 @@
-package es.agrobook.api.model;
+package es.agrobook.api.model.catastro;
 
 import java.util.Set;
 
-import es.agrobook.api.model.cultivo.Cultivo;
-import es.agrobook.api.model.explotacion.Explotacion;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,22 +10,23 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class CausaBaja {
+public class SuperficieMotivoNoProductividad {
 	
 	@Id
-	private byte id;
+	private short id;
 
-	@Column(nullable = false)
+    @Column(nullable = false, unique = true, length = 3)
+	private String codigo;
+
+    @Column(nullable = false)
 	private String descripcion;
+
 
 
 	// Entidades enlazadas
 
-	@OneToMany(mappedBy = "causaBaja")
-	private Set<Cultivo> cultivos;
-
-	@OneToMany(mappedBy = "causaBaja")
-	private Set<Explotacion> explotaciones;
+	@OneToMany(mappedBy = "areaNoProductiva")
+	private Set<Superficie> superficies;
 
 	/*
 	

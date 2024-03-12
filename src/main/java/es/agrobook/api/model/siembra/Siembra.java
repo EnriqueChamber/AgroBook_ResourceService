@@ -1,7 +1,6 @@
 package es.agrobook.api.model.siembra;
 
 import java.util.Date;
-import java.util.Set;
 
 import es.agrobook.api.model.Maquina;
 import es.agrobook.api.model.cultivo.Cultivo;
@@ -18,6 +17,9 @@ public class Siembra{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+
+	
+	//#region campos SIEX
 
     @Column(nullable = false)
 	private Date fechaInicio;

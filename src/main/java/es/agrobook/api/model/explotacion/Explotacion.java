@@ -3,15 +3,13 @@ package es.agrobook.api.model.explotacion;
 import java.sql.Date;
 import java.util.Set;
 
-import es.agrobook.api.model.CausaBaja;
 import es.agrobook.api.model.Maquina;
 import es.agrobook.api.model.RendimientoEconomico;
-import es.agrobook.api.model.cultivo.Cultivo;
-import es.agrobook.api.model.edificacion.Edificacion;
+import es.agrobook.api.model.catastro.CausaBaja;
+import es.agrobook.api.model.catastro.Edificacion;
 import es.agrobook.api.model.location.Municipio;
-import es.agrobook.api.model.location.ParcelaSigpac;
-import es.agrobook.api.model.persona.Contacto;
-import es.agrobook.api.model.persona.PersonaExplotacion;
+import es.agrobook.api.model.persona.PersonaContacto;
+import es.agrobook.api.model.riego.RiegoComunidadRegantes;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,8 +27,7 @@ public class Explotacion {
 	@Column(nullable = false)
 	private String nombre;
 
-	@Column(nullable = false)
-	private String nif;
+	//#region campos SIEX
 
 	@Column(nullable = false)
 	private String registroAutonomico; 
@@ -38,18 +35,6 @@ public class Explotacion {
 	@Column(nullable = false)
 	private Date fechaInstripcionRea; 
 
-	private String registroNacional; 
-
-	@Column(nullable = false)
-	private String direccion; 		
-	
-	@ManyToOne(optional = false)
-	private Municipio municipio;
-
-	@ManyToOne(optional = false)
-	private Contacto contacto;
-
-	// Indicadores REA
 	@Column(nullable = true)
 	private boolean jovenAgricultor;
 
@@ -64,49 +49,61 @@ public class Explotacion {
 
 	@Column(nullable = true)
 	private boolean ventaDirecta;
-	
 
+	@Column(nullable = true)
+	private Date fechaBajaRea; 
 
 	@ManyToOne(optional = true)
 	private CausaBaja causaBaja;
 
-	@Column(nullable = true)
-	private Date fechaBajaRea;
-
-	
-
 	@ManyToOne(optional = false)
 	private ExplotacionClasificacion clasificacion;
 
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private Date fechaClasificacion;
 
-    @ManyToMany
-	private Set<ParcelaSigpac> parcelasSigpac;
+	@Column(nullable = true)
+	private RiegoComunidadRegantes comunidadRegantes;
 
+	/*@Column(nullable = true)
+	private Persona entidadHabilitadaRea;
+
+	@Column(nullable = true)
+	private Persona entidadHabilitadaCue;
+
+	@Column(nullable = true)
+	private String cueComercial; -> AgroBook*/
+	
+	
     @OneToMany(mappedBy = "explotacion")
-    private Set<PersonaExplotacion> personasExplotacion;
-	
-    @OneToMany(mappedBy = "explotacion")
-	private Set<Cultivo> cultivos;
+    private Set<ExplotacionActividadSecundaria> actividadesSecundarias;  // SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Actividad Secundaria ligada a la actividad agraria
 
-    @ManyToMany
-	private Set<Maquina> maquinas;
+	@OneToMany //(mappedBy = "explotacion") Desacoplado para que sea aplicable a Actividades Secundarias
+	private Set<RendimientoEconomico> rendimientosEconomicos;  // SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Rendimiento Económico
 
-    @ManyToMany
-	private Set<Edificacion> edificaciones;
+	@OneToMany(mappedBy = "explotacion")
+	private Set<Edificacion> edificaciones;  // SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Rendimiento Datos de edificaciones e instalaciones
 
-	
+	@OneToMany(mappedBy = "explotacion")
+	private Set<Maquina> maquinas;  // SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Rendimiento Datos de maquinaria y equipos
 
-    @OneToMany(mappedBy = "explotacion")
-    private Set<ExplotacionActividadSecundaria> actividadesSecundarias;
-
-    @OneToMany //(mappedBy = "explotacion") Desacoplado para que sea aplicable en el futuro a Actividades Secundarias
-	private Set<RendimientoEconomico> rendimientosEconomicos;
+	//#endregion
 
 	
-	
-	private String rutaImagen;
+	//#region campos Cuaderno Campo Junta de Andalucia
 
+	@Column(nullable = true)
+	private String registroNacional; 
+
+	@Column(nullable = true)
+	private String direccion; 		
 	
+	@ManyToOne(optional = false)
+	private Municipio municipio;
+
+	@ManyToOne(optional = true)
+	private PersonaContacto contacto;
+
+	//#endregion
+
 }
