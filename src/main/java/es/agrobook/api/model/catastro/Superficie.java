@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.Set;
 
 import es.agrobook.api.model.AplicacionTratamiento;
+import es.agrobook.api.model.enums.SuperficieTipo;
 import es.agrobook.api.model.location.RecintoSigpac;
 import es.agrobook.api.model.siembra.Siembra;
 import jakarta.persistence.*;
@@ -28,6 +29,9 @@ public class Superficie {
 
 	@ManyToOne(optional = true)
     private RecintoSigpac recintoSigpac; // SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies
+
+	@ManyToOne(optional = true)
+    private SuperficieTipo tipo; //DETALLE_ACTIVIDAD_AGRARIA.csv -> Ambito
 
     @Column(nullable = false)
 	private boolean pastosComunes;
@@ -68,18 +72,9 @@ public class Superficie {
 
 	@ManyToMany(mappedBy = "parcelasSigpac")
 	private Set<SuperficieAgrupacion> agrupaciones;
-
-
-
-
 	
-
-	@OneToMany(mappedBy = "cultivo")
-    private Set<Siembra> siembras;
-
-	@OneToMany(mappedBy = "cultivo")
-    private Set<AplicacionTratamiento> aplicacionesTratamientos;
-	
+	@OneToMany(mappedBy = "superficie")
+    private Set<Siembra> siembras; 
 
 
 

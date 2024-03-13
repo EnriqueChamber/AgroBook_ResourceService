@@ -1,9 +1,13 @@
 package es.agrobook.api.model.siembra;
 
-import java.util.Set;
+import java.util.Date;
 
 import es.agrobook.api.model.cultivo.Cultivo;
-import es.agrobook.api.model.enums.TipoMaterialVegetalReproduccion;
+import es.agrobook.api.model.cultivo.CultivoEstadofenologico;
+import es.agrobook.api.model.enums.TipoCertificacionEcologica;
+import es.agrobook.api.model.maquina.Maquina;
+import es.agrobook.api.model.persona.Persona;
+import es.agrobook.api.model.tratamiento.Tratamiento;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,58 +16,50 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class MaterialVegetalReproduccion {
+public class MaterialVegetalReproduccion{
 
 	@Id
-	private byte id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
-	@Id
+	
+	//#region campos SIEX
+
+	@ManyToOne(optional = false)
+	private MaterialVegetalReproduccionTipo tipo; // SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies -> Datos de Cultivos
+
+	@ManyToOne(optional = false)
+    private Persona productor; // SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies-> Datos adicionales de Cultivos
+
+	@ManyToOne(optional = true)
+    private Persona proveedor; // SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies-> Datos adicionales de Cultivos
+
+	@ManyToOne(optional = true)
+	private MaterialVegetalReproduccionProcedencia procedencia; // SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies -> Datos de Cultivos
+
+    @Column(nullable = true)
+	private String noLote; // SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies -> Datos adicionales de Cultivos
+
+    @Column(nullable = true)
+	private String pasaporte; // SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies -> Datos adicionales de Cultivos
+
     @Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private TipoMaterialVegetalReproduccion tipo;
+	private TipoCertificacionEcologica produccionEcologica; // SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies-> Datos adicionales de Cultivos
 
-    @Column(nullable = false)
-	private String descripcion;
+	@OneToOne
+	private Tratamiento tratamiento;
 
+	//#endregion
 
-	// Dependientes
+	@ManyToOne(optional = false)
+    private Variedad variedad;
 
-	@OneToMany(mappedBy = "materialVegetalReproduccion")
-	private Set<Cultivo> cultivos;
+	//@ManyToOne(optional = false)
+	//private CultivoEstadofenologico estadofenologico; 
+	// Contemplado para crear un único ProductoVegetal que evolucione en estado fenológico y referencie el origen.
+	// Por ejemplo: Producto vegetal comprado (Semilla), evoluciona su estado fenologico hasta generar una cosecha en su último estado fenologico.
+	// En caso de que en la cosecha o previamente se haya obtenido material vegetal de reproducción del producto vegetal del cultivo, se crea un producto vegetal derivado.
+	// Dependiendo del estado fenologico del producto obtenido derivado, puede ser semilla, parte de planta o planta.
 
-
-	/*
-	Código del tipo	Tipo de material vegetal de reproducción	Código	Detalle del tipo
-	1	Semilla	1	Certificada
-	1	Semilla	2	Estándar
-	1	Semilla	3	Comercial
-	1	Semilla	4	Reempleo
-	1	Semilla	6	Identificada
-	1	Semilla	7	Seleccionada
-	1	Semilla	8	Cualificada
-	1	Semilla	9	Controlada
-	1	Semilla	10	Prebase
-	1	Semilla	11	Base
-	1	Semilla	13	Sin categoría
-	2	Planta	1	Certificada
-	2	Planta	2	Estándar
-	2	Planta	5	Conformitas Agrarias Communitatis
-	2	Planta	6	Identificada
-	2	Planta	7	Seleccionada
-	2	Planta	8	Cualificada
-	2	Planta	9	Controlada
-	2	Planta	11	Base
-	2	Planta	12	Inicial
-	2	Planta	13	Sin categoría
-	3	Parte de planta	1	Certificada
-	3	Parte de planta	2	Estándar
-	3	Parte de planta	5	Conformitas Agrarias Communitatis
-	3	Parte de planta	7	Seleccionada
-	3	Parte de planta	8	Cualificada
-	3	Parte de planta	9	Controlada
-	3	Parte de planta	11	Base
-	3	Parte de planta	12	Inicial
-	3	Parte de planta	13	Sin categoría
-
-	 */
 }

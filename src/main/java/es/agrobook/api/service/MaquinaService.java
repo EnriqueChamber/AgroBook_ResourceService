@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import es.agrobook.api.model.Maquina;
+import es.agrobook.api.model.maquina.Maquina;
 import es.agrobook.api.repository.MaquinaRepository;
 import lombok.RequiredArgsConstructor;
 

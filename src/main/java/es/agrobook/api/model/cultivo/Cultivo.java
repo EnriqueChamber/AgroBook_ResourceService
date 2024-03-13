@@ -6,7 +6,9 @@ import java.util.Set;
 import es.agrobook.api.model.AplicacionTratamiento;
 import es.agrobook.api.model.enums.TipoCertificacionEcologica;
 import es.agrobook.api.model.explotacion.Explotacion;
+import es.agrobook.api.model.persona.Persona;
 import es.agrobook.api.model.siembra.Siembra;
+import es.agrobook.api.model.tratamiento.Tratamiento;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,8 +26,32 @@ public class Cultivo{
 
 	//#region campos SIEX
 
-    /*@ManyToOne(optional = false)
-	private CultivoTipo cultivo; */  // SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies (No existe Catálogo)
+    @Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private TipoCertificacionEcologica produccionEcologica; 
+	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Regímenes de Calidad -> Certificado Produccion Ecológica
+
+	@ManyToOne(optional = false)
+	private Persona empresaCertificadoraProduccionEcologica; 
+	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Regímenes de Calidad -> Certificado Produccion Ecológica
+
+    @Column(nullable = true)
+	private boolean produccionIntegrada; 
+	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Regímenes de Calidad -> Producción Integrada
+
+	@ManyToOne(optional = false)
+	private Persona empresaCertificadoraProduccionIntegrada; 
+	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Regímenes de Calidad -> Producción Integrada
+
+	@ManyToOne(optional = true)
+	private DenominacionOrigen denominacionOrigen; 
+
+	@ManyToOne(optional = true)
+	private Persona certificadorDenominacionOrigen; 
+
+	@Column(nullable = false)
+	private String codigoSiex;  
+	// SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies (No existe Catálogo)
 
 	// SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies -> Datos de Cultivos -> Variedad Especie y Tipo
 	// Determinado por la/s siembra/s
@@ -54,52 +80,48 @@ public class Cultivo{
 	// SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies -> Datos de Cultivos -> Material Vegetal de Reproducción y Tipo. Empresa produtora de semilla cert. Num Proveedor del material vegetal.
 	// Determinado por la/s siembra/s
 
+	@ManyToOne(optional = false)
+	private CultivoDestino destino; 
+	// SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies -> Datos adicionales de Cultivos
+
+	@ManyToOne(optional = false)
+	private CultivoSistemaCultivo sistemaCultivo; 
+	// SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies -> Datos adicionales de Cultivos
+
+	//#endregion
+
+
+	
+
+	@ManyToOne(optional = false)
+	private CultivoEstadofenologico estadofenologico; 
+	
+	//#region campos Cuaderno Campo Junta de Andalucia
+	//private String secanoRegadio; 			// Solo Doc     //Secano (SEC), aspersión (ASP), goteo o localizado (LOC), por gravedad (GRA).
+
+    @Column(nullable = true)
+	private float superficie;
+	
+
+	// DATOS AGRONOMICOS - Cultivo
+    @Column(nullable = false)
+	private String ventilacion; 			// Solo Doc //Aire libre (AL), malla (M), cubierta bajo plástico (BP), invernadero (INV)
+	
 	//#endregion
 
 	
+	
 	@OneToMany(mappedBy = "cultivo")
     private Set<Siembra> siembras; 
-
-
-    @Enumerated(EnumType.STRING)
-	@Column(nullable = false)
-	private TipoCertificacionEcologica certificacionEcologica;
-
-    @Column(nullable = true)
-	private boolean produccionIntegrada;
-
-	@ManyToOne(optional = false)
-	private CultivoSistemaCultivo sistemaCultivo;
-
-	@ManyToOne(optional = false)
-	private CultivoDestino destino;
 
 	@ManyToOne(optional = false)
 	private CultivoCoberturaSuelo coberturaSuelo;
 
 	@ManyToOne(optional = false)
 	private CultivoAprovechamiento aprovechamiento;
-	//private String secanoRegadio; 			// Solo Doc     //Secano (SEC), aspersión (ASP), goteo o localizado (LOC), por gravedad (GRA).
-
-    @Column(nullable = true)
-	private float superficie;
 
 	@OneToMany(mappedBy = "cultivo")
-    private Set<CultivoSuperficieNoProductiva> superficiesNoProductivas;
-	
-
-	// DATOS AGRONOMICOS - Cultivo
-    @Column(nullable = false)
-	private String ventilacion; 			// Solo Doc //Aire libre (AL), malla (M), cubierta bajo plástico (BP), invernadero (INV)
-    
-    @ManyToOne(optional = false)
-	private Explotacion explotacion;
-
-	
-
-
-	@OneToMany(mappedBy = "cultivo")
-    private Set<AplicacionTratamiento> aplicacionesTratamientos;
+    private Set<Tratamiento> tratamientos;
 	
 
 

@@ -1,12 +1,15 @@
-package es.agrobook.api.model.siembra;
+package es.agrobook.api.model.tratamiento;
 
 import java.util.Date;
 import java.util.Set;
 
 import es.agrobook.api.model.catastro.Superficie;
 import es.agrobook.api.model.cultivo.Cultivo;
+import es.agrobook.api.model.cultivo.CultivoEstadofenologico;
+import es.agrobook.api.model.explotacion.Explotacion;
 import es.agrobook.api.model.maquina.Maquina;
 import es.agrobook.api.model.maquina.MaquinaUso;
+import es.agrobook.api.model.siembra.MaterialVegetalReproduccion;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,7 +18,7 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class Siembra{
+public class Tratamiento{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,5 +61,6 @@ public class Siembra{
 
 	@ManyToOne(optional = false)
 	private Superficie superficie;
+
 
 }

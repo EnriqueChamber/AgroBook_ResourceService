@@ -11,6 +11,7 @@ import lombok.*;
 @Data
 @Builder
 public class PersonaRegimenMatrimonial {
+	// SIEX -> Catálogos -> NO DEFINIDO EN ANEXO VII SIEX DOCUMENTO SEGUIMIENTO -> REG_MATR.csv
 	
 	@Id
 	@Column(length = 2)

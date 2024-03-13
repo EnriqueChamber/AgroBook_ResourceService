@@ -1,6 +1,5 @@
 package es.agrobook.api.model.location;
 
-import es.agrobook.api.model.enums.UsoSigpac;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,8 +26,7 @@ public class RecintoSigpac {
 	@Column(nullable = false)
 	private float altitud;				// Solo Web -> Parcela = Recinto Sigpac
 	
-    @Enumerated(EnumType.STRING)
-	@Column(nullable = false)
+    @ManyToOne(optional = false)
 	private UsoSigpac uso;						// Doc y (Web -> Parcela = Recinto Sigpac)
 	
 	@Column(nullable = true)

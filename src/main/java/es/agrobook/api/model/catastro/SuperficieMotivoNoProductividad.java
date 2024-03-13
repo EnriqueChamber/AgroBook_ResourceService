@@ -30,23 +30,27 @@ public class SuperficieMotivoNoProductividad {
 
 	/*
 	
-	Código SIEX	Descripción
-	1	Cambio de titularidad De la explotación
-	2	Desistimiento De la explotación
-	3	Fusión de explotaciones De la explotación
-	4	Baja de oficio De la explotación
-	5	Error material De la explotación
-	6	Incidencia en controles Del cultivo
-	7	Cambio a aprovechamiento Del cultivo
-	8	Error material Del cultivo
-	9	Cambio de geometría De la DGC
-	10	Venta De la DGC
-	11	Arrendamiento a un tercero De la DGC
-	12	Finalización del arrendamiento De la DGC
-	13	Incidencia en controles De la DGC
-	14	Error material De la DGC
-	15	Baja de oficio Del cultivo
-	16	Baja de oficio De la DGC
+	Código SIEX	Código	Tipo
+	1	ZNC	Zonas de no cosechado de cereal y oleaginosa (por 1m2)
+	2	IB	Islas de biodiversidad (por 1 m2)
+	3	MB	Márgenes de biodiversidad (por 1 m)
+	4	LF	Lindes forestales (por 1 m)
+	5	FP	Franjas de protección (por 1 m)
+	6	ST	Setos/franjas arboladas (por 1 m)
+	7	AB1	Árbol aislado
+	8	AB2	Árboles en hilera
+	9	AB3	Grupo de Árboles
+	10	LD	Lindes de campo (1 m)
+	11	CH	Charcas (charcas, lagunas, estanques y abrevaderos naturales) (por 1 m2)
+	12	IS	Islas o Enclaves (Islas o enclaves de vegetación natural o roca) y majanos (por 1 m2)
+	13	TR	Terrazas (terrazas de retención, bancales, ribazos) (por 1 m)
+	14	MU	Muros de piedra
+	15	CO	Pequeñas construcciones de arquitectura tradicional
+	16	TBB	Tierras en barbecho de biodiversidad (incluidos los barbechos melíferos) (por 1 m2)
+	17	TB	Tierras en barbecho (por 1 m2)
+	18	ANS	Áreas de no siega
+	19	ZNA	Zonas de no cosechado de aromáticas (por 1m2)
+
 
 
 

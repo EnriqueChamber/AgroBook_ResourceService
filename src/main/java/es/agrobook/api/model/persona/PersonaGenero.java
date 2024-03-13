@@ -12,6 +12,7 @@ import lombok.*;
 @Data
 @Builder
 public class PersonaGenero {
+	// SIEX -> Catálogos -> NO DEFINIDO EN ANEXO VII SIEX DOCUMENTO SEGUIMIENTO -> SEXO.csv
 	
 	@Id
 	@Column(length = 1)

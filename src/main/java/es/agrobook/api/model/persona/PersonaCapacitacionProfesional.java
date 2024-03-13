@@ -11,6 +11,7 @@ import lombok.*;
 @Data
 @Builder
 public class PersonaCapacitacionProfesional {
+	// SIEX -> Catálogos -> Capacitacion Profesional -> CAPACITACION_PROFESIONAL.csv
 	
 	@Id
 	private byte id;

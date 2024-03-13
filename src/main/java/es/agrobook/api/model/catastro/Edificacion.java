@@ -51,6 +51,12 @@ public class Edificacion{
     @ManyToOne(optional = true)
 	private String nifArrendador;
 
+    @ManyToOne(optional = true)
+	private float plazasMaximasAlojamientosGanaderos;
+
+    @ManyToOne(optional = true)
+	private float volumenMaximo;
+
 	//#endregion
 
 

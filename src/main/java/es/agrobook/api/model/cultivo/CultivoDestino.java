@@ -13,7 +13,7 @@ import lombok.*;
 public class CultivoDestino {
 
 	@Id
-	private byte codigo;
+	private byte id;
 
     @Column(nullable = false)
 	private String descripcion;

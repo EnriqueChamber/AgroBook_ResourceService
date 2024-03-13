@@ -8,7 +8,8 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class PersonaTipoTitular {
+public class PersonaFormaJuridica {
+	// SIEX -> Catálogos -> Tipo de Titular -> TIPO_TITULAR.csv
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,8 +18,9 @@ public class PersonaTipoTitular {
 	@Column(nullable = false)
 	private String descripcion;
 
-	/*
 	
+	/*
+
 	Código SIEX	Forma jurídica
 	1	SAT
 	2	Cooperativa agroalimentaria

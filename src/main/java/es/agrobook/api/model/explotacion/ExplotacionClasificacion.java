@@ -11,6 +11,7 @@ import lombok.*;
 @Data
 @Builder
 public class ExplotacionClasificacion {
+	// SIEX -> Catálogos -> Clasificacíon de la explotación -> CLASIFICACION_EXPLOTACION.csv
 	
 	@Id
 	private byte id;
