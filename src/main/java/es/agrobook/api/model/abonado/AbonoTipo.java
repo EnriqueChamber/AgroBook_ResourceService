@@ -1,11 +1,7 @@
 package es.agrobook.api.model.abonado;
 
-import java.util.Date;
 import java.util.Set;
 
-import es.agrobook.api.model.catastro.Superficie;
-import es.agrobook.api.model.cultivo.Cultivo;
-import es.agrobook.api.model.maquina.MaquinaUso;
 import jakarta.persistence.*;
 import lombok.*;
 

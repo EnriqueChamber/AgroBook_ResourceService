@@ -2,7 +2,7 @@ package es.agrobook.api.model.maquina;
 
 import java.util.Date;
 
-import es.agrobook.api.model.explotacion.Explotacion;
+import es.agrobook.api.model.tratamiento.Tratamiento;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,18 +29,14 @@ public class MaquinaUso{
 	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Rendimiento Datos de maquinaria y equipos
 
 	//#endregion
-	
-
-    @Column(nullable = false)
-	private Date fechaAdquisicion;
-
-    @Column(nullable = false)
-	private Date fechaUltimaInspeccion;
 
     @ManyToOne(optional = false)
 	private Maquina maquina;
 
 
 	// Entidades enlazadas
+
+    @ManyToOne(optional = true)
+	private Tratamiento tratamiento;
 
 }

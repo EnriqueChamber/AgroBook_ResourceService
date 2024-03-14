@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import es.agrobook.api.model.catastro.Superficie;
+import es.agrobook.api.model.cosecha.Cosecha;
 import es.agrobook.api.model.cultivo.Cultivo;
 import es.agrobook.api.model.maquina.MaquinaUso;
 import es.agrobook.api.model.siembra.MaterialVegetalReproduccion;
@@ -15,29 +16,33 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class Tratamiento{
+public class TratamientoFitosanitarioClasificacion {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-
-	
-	//#region campos SIEX
+	private byte id;
 
     @Column(nullable = false)
-	private Date fechaInicio;
+	private String descripcion;
 
-    @Column(nullable = true)
-	private Date fechaFin;
 
-	@ManyToOne(optional = false)
-	private Cultivo cultivo;
 
-	@ManyToOne(optional = false)
-	private Superficie superficie;
+	// Entidades enlazadas
+
+	@OneToMany(mappedBy = "clasificacion")
+	private Set<TratamientoFitosanitario> fitosanitarios;
+
 	
-	@OneToMany(mappedBy = "tratamiento")
-	private Set<MaquinaUso> usosMaquinaria;
+
+
+	/*
+	Código SIEX	Tipo de producto fitosanitario
+	1	Producto fitosanitario registrado
+	2	Denominación común
+	3	Importación paralela
+	4	Autorización excepcional
+
+
+	 */
 
 
 }

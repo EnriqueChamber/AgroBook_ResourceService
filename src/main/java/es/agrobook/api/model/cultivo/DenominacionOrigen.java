@@ -3,7 +3,6 @@ package es.agrobook.api.model.cultivo;
 import java.util.Set;
 
 import es.agrobook.api.model.enums.IndicacionGeografica;
-import es.agrobook.api.model.explotacion.Explotacion;
 import es.agrobook.api.model.location.Municipio;
 import jakarta.persistence.*;
 import lombok.*;

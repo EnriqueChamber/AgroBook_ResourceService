@@ -3,7 +3,6 @@ package es.agrobook.api.model.catastro;
 import java.sql.Date;
 import java.util.Set;
 
-import es.agrobook.api.model.AplicacionTratamiento;
 import es.agrobook.api.model.enums.SuperficieTipo;
 import es.agrobook.api.model.location.RecintoSigpac;
 import es.agrobook.api.model.siembra.Siembra;

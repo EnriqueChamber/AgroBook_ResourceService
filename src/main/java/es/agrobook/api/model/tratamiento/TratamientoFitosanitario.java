@@ -6,6 +6,7 @@ import java.util.Set;
 import es.agrobook.api.model.catastro.Superficie;
 import es.agrobook.api.model.cultivo.Cultivo;
 import es.agrobook.api.model.maquina.MaquinaUso;
+import es.agrobook.api.model.persona.Persona;
 import es.agrobook.api.model.siembra.MaterialVegetalReproduccion;
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,7 +16,7 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Builder
-public class Tratamiento{
+public class TratamientoFitosanitario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,19 +26,29 @@ public class Tratamiento{
 	//#region campos SIEX
 
     @Column(nullable = false)
-	private Date fechaInicio;
+	private String numeroRegistro; // Prod Fitosanitario / MDF
 
-    @Column(nullable = true)
-	private Date fechaFin;
-
-	@ManyToOne(optional = false)
-	private Cultivo cultivo;
+    @Column(nullable = false)
+	private String nombreComercial;
 
 	@ManyToOne(optional = false)
-	private Superficie superficie;
+	private TratamientoFitosanitarioClasificacion clasificacion;
+
+	@ManyToOne(optional = false)
+	private Persona fabricante;
+
+    @Column(nullable = false)
+	private String formulado; // Solo para prod Fitos
+
+    @Column(nullable = false)
+	private String formulado;
+
+
 	
-	@OneToMany(mappedBy = "tratamiento")
-	private Set<MaquinaUso> usosMaquinaria;
 
+	// Entidades enlazadas
+
+	@OneToMany(mappedBy = "fitosanitario")
+	private Set<Tratamiento> tratamientos;
 
 }

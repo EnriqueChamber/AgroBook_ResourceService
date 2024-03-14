@@ -2,7 +2,6 @@ package es.agrobook.api.model.location;
 
 import java.util.Set;
 
-import es.agrobook.api.model.cultivo.Cultivo;
 import jakarta.persistence.*;
 import lombok.*;
 

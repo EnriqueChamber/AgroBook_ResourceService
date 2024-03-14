@@ -1,11 +1,8 @@
 package es.agrobook.api.model.cultivo;
 
-import java.util.Date;
 import java.util.Set;
 
-import es.agrobook.api.model.AplicacionTratamiento;
 import es.agrobook.api.model.enums.TipoCertificacionEcologica;
-import es.agrobook.api.model.explotacion.Explotacion;
 import es.agrobook.api.model.persona.Persona;
 import es.agrobook.api.model.siembra.Siembra;
 import es.agrobook.api.model.tratamiento.Tratamiento;

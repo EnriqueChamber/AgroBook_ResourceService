@@ -6,6 +6,8 @@ import java.util.Set;
 import es.agrobook.api.model.catastro.Superficie;
 import es.agrobook.api.model.cultivo.Cultivo;
 import es.agrobook.api.model.maquina.MaquinaUso;
+import es.agrobook.api.model.persona.Persona;
+import es.agrobook.api.model.riego.Riego;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,7 +31,7 @@ public class Abonado {
     @Column(nullable = true)
 	private Date fechaFin;
 	
-	@ManyToOne
+	@ManyToMany
 	private Set<MaquinaUso> usosMaquinaria;
 
 	@ManyToOne(optional = false)
@@ -38,9 +40,36 @@ public class Abonado {
 	@ManyToOne(optional = false)
 	private Superficie superficie;
 
-	
 	@ManyToOne
-	private Set<AbonadoBuenasPracticas> buenasPracticas;
+	private AbonadoBuenasPracticas buenasPracticas;
+
+	@ManyToOne(optional = false)
+	private Abono abono;
+
+    @Column(nullable = true)
+	private Float dosis;
+
+	@ManyToOne(optional = false)
+	private AbonadoTipo tipo; 
+
+	@ManyToOne(optional = false)
+	private AbonadoMetodoAplicacion metodoAplicacion; 
+
+    @Column(nullable = true)
+	private String albaran;
+
+    @Column(nullable = true)
+	private boolean docAplicacionLodos;
+
+	@ManyToOne(optional = false)
+	private Persona aplicador; 
+	
+
+	@OneToOne(optional = false)
+	private Riego riego; 
+
+	@ManyToOne(optional = false)
+	private AbonadoPlan planAbonado; 
 
 
 
