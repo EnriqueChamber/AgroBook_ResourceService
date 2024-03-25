@@ -8,12 +8,13 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class CultivoSistemaCultivo {
 
 	@Id
-	private byte codigo;
+	private Short codigo;
 
     @Column(nullable = false)
 	private String descripcion;

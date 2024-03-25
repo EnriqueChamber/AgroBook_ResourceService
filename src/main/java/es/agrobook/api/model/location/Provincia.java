@@ -8,12 +8,13 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class Provincia {
 	
 	@Id
-	private byte id;
+	private Short id;
 
 	@Column(nullable = false)
 	private String descripcion;

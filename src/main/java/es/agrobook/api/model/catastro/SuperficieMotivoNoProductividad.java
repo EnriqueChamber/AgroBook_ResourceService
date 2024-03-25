@@ -8,12 +8,13 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class SuperficieMotivoNoProductividad {
 	
 	@Id
-	private short id;
+	private Short id;
 
     @Column(nullable = false, unique = true, length = 3)
 	private String codigo;
@@ -25,7 +26,7 @@ public class SuperficieMotivoNoProductividad {
 
 	// Entidades enlazadas
 
-	@OneToMany(mappedBy = "areaNoProductiva")
+	@OneToMany(mappedBy = "motivoNoProductividad")
 	private Set<Superficie> superficies;
 
 	/*

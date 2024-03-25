@@ -9,13 +9,14 @@ import lombok.*;
 @IdClass(ActividadSecundaria2doNivel.ActividadSecundaria2doNivelId.class)
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class ActividadSecundaria2doNivel {
 	
 
 	@Id
-	private byte id;
+	private Short id;
 
 	@Column(nullable = false)
 	private String descripcion;
@@ -31,11 +32,13 @@ public class ActividadSecundaria2doNivel {
 
 	@NoArgsConstructor
     @AllArgsConstructor
+@Getter
+@Setter
     @Data
     @Builder
     public static class ActividadSecundaria2doNivelId {
-        private byte id;
-        private byte actividad1erNivel;
+        private Short id;
+        private Short actividad1erNivel;
     }
 
 	/*

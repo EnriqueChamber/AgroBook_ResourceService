@@ -8,15 +8,16 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class ComunidadAutonoma {
 	
 	@Id
-	private byte idCatastro;
+	private Short idCatastro;
 
 	@Column(nullable = false)
-	private byte idINE;
+	private Short idINE;
 
 	@Column(nullable = false)
 	private String descripcion;

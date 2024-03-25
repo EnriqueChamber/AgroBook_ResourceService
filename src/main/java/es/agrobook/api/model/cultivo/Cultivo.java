@@ -4,15 +4,15 @@ import java.util.Set;
 
 import es.agrobook.api.model.enums.TipoCertificacionEcologica;
 import es.agrobook.api.model.persona.Persona;
-import es.agrobook.api.model.siembra.Siembra;
-import es.agrobook.api.model.tratamiento.Tratamiento;
+import es.agrobook.api.model.producto.ProductoVegetalEstadoFenologico;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class Cultivo{
 
@@ -90,8 +90,8 @@ public class Cultivo{
 
 	
 
-	@ManyToOne(optional = false)
-	private CultivoEstadofenologico estadofenologico; 
+	@ManyToOne(optional = true)
+	private ProductoVegetalEstadoFenologico estadoFenologico; 
 	
 	//#region campos Cuaderno Campo Junta de Andalucia
 	//private String secanoRegadio; 			// Solo Doc     //Secano (SEC), aspersión (ASP), goteo o localizado (LOC), por gravedad (GRA).
@@ -106,26 +106,9 @@ public class Cultivo{
 	
 	//#endregion
 
-	
-	
-	@OneToMany(mappedBy = "cultivo")
-    private Set<Siembra> siembras; 
-
-	@ManyToOne(optional = false)
-	private CultivoCoberturaSuelo coberturaSuelo;
-
-	@ManyToOne(optional = false)
-	private CultivoAprovechamiento aprovechamiento;
-
-	@OneToMany(mappedBy = "cultivo")
-    private Set<Tratamiento> tratamientos;
-	
-
-
-
 
 	// Entidades enlazadas
 
 	@OneToMany(mappedBy = "cultivo")
-	private Set<CultivoCampanya> campanyas; // Determina Fecha inicio y fin: SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies
+	private Set<CultivoCampanya> cultivosCampanyas;
 }

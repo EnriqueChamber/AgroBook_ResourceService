@@ -1,39 +1,43 @@
 package es.agrobook.api.model.cultivo;
 
-import java.util.Date;
+import java.util.Set;
 
-import es.agrobook.api.model.catastro.SuperficieAgrupacion;
+import es.agrobook.api.model.actividad.riego.RiegoOrigenAgua;
+import es.agrobook.api.model.actividad.riego.RiegoSistemaRiego;
+import es.agrobook.api.model.catastro.Superficie;
+import es.agrobook.api.model.explotacion.ExplotacionCampanya;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "cultivo_id", "campanya_id" }) })
 public class CultivoCampanya{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
-    @Column(nullable = false)
-	private String nombre;
-
-    @Column(nullable = false)
-	private Date fechaInicio;
-
-    @Column(nullable = true)
-	private Date fechaFinalizacion;
-
-    @ManyToOne(optional = false)
+	
+	@ManyToOne(optional = false)
 	private Cultivo cultivo;
+	
+	@ManyToOne(optional = false)
+	private ExplotacionCampanya campanya;
+	
+	@ManyToOne(optional = false)
+	private RiegoOrigenAgua origenAgua;
+	
+	@ManyToOne(optional = false)
+	private RiegoSistemaRiego sistemaRiego;
 
-    @ManyToOne(optional = false)
-	private SuperficieAgrupacion superficie;
 
-    @Column(nullable = false)
-	private float produccionEstimada; // SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Rendimiento Datos de maquinaria y equipos
+	// Entidades enlazadas
 
+	@ManyToMany(mappedBy = "cultivosCampanyas")
+	private Set<Superficie> superficies;
 
 }

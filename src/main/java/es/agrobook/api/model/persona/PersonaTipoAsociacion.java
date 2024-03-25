@@ -6,13 +6,14 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class PersonaTipoAsociacion {
 	// SIEX -> Catálogos -> Tipo de enridad/asociación -> TIPO_ASOCIACION.csv
 	
 	@Id
-	private byte id;
+	private Short id;
 
 	@Column(nullable = false)
 	private String descripcion;

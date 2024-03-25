@@ -3,14 +3,14 @@ package es.agrobook.api.model.explotacion;
 import java.util.Set;
 
 import es.agrobook.api.model.RendimientoEconomico;
-import es.agrobook.api.model.cultivo.Cultivo;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class ExplotacionActividadSecundaria {
 	
@@ -26,7 +26,7 @@ public class ExplotacionActividadSecundaria {
     @ManyToOne(optional = false)
 	private Explotacion explotacion;
 
-	@OneToMany
+	@OneToMany(mappedBy = "actividadSecundaria")
 	private Set<RendimientoEconomico> rendimientosEconomicos;  // SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Rendimiento Económico
 
 }

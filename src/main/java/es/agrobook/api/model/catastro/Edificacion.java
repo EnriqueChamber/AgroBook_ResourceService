@@ -7,7 +7,8 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class Edificacion{
 
@@ -48,13 +49,13 @@ public class Edificacion{
     @ManyToOne(optional = false)
 	private RegimenTenencia regimenTenencia;
 
-    @ManyToOne(optional = true)
+    @Column(nullable = true)
 	private String nifArrendador;
 
-    @ManyToOne(optional = true)
+    @Column(nullable = true)
 	private float plazasMaximasAlojamientosGanaderos;
 
-    @ManyToOne(optional = true)
+    @Column(nullable = true)
 	private float volumenMaximo;
 
 	//#endregion

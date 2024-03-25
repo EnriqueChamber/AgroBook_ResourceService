@@ -1,12 +1,16 @@
 package es.agrobook.api.model;
 
+import es.agrobook.api.model.explotacion.Explotacion;
+import es.agrobook.api.model.explotacion.ExplotacionActividadSecundaria;
+import es.agrobook.api.model.persona.Persona;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class RendimientoEconomico {
 	
@@ -27,6 +31,16 @@ public class RendimientoEconomico {
 	private float gastos;
 
 
+
+	// Entidades enlazadas
+	@ManyToOne
+	private Explotacion explotacion;
+
+	@ManyToOne
+	private ExplotacionActividadSecundaria actividadSecundaria;
+
+	@ManyToOne
+	private Persona persona;
 
 	/*
 	

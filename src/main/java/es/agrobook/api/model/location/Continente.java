@@ -2,19 +2,19 @@ package es.agrobook.api.model.location;
 
 import java.util.Set;
 
-import es.agrobook.api.model.catastro.Edificacion;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class Continente {
 	
 	@Id
-	private byte id;
+	private Short id;
 
 	@Column(nullable = false)
 	private String descripcion;

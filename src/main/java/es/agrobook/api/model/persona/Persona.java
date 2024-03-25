@@ -10,7 +10,8 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class Persona {
 	
@@ -165,7 +166,7 @@ public class Persona {
 	@ManyToOne(optional = true)
 	private PersonaTipoAsociacion tipoAsociacion;
 
-	@ManyToOne(optional = true)
+	@Column(nullable = false)
 	private String codigoSiex;
 
 
@@ -174,7 +175,7 @@ public class Persona {
 	private Set<PersonaExplotacion> personaExplotaciones;
 
 	
-    @OneToMany
+    @OneToMany(mappedBy = "persona")
 	private Set<RendimientoEconomico> rendimientosEconomicos;
 	
 }

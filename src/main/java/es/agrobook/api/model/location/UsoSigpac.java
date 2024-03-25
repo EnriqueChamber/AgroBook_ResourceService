@@ -8,7 +8,8 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class UsoSigpac {
 	
@@ -18,15 +19,12 @@ public class UsoSigpac {
 
 	@Column(nullable = false)
 	private String descripcion;
-	
-	@ManyToOne(optional = false)
-	private AgrupacionPaises agrupacionPaises;
 
 
 	// Entidades enlazadas
 
-	@OneToMany(mappedBy = "pais")
-	private Set<ComunidadAutonoma> comunidadesAutonomas;
+	@OneToMany(mappedBy = "uso")
+	private Set<RecintoSigpac> recintos;
 	
 
 	/*

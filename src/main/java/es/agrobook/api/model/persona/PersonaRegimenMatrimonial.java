@@ -8,7 +8,8 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class PersonaRegimenMatrimonial {
 	// SIEX -> Catálogos -> NO DEFINIDO EN ANEXO VII SIEX DOCUMENTO SEGUIMIENTO -> REG_MATR.csv

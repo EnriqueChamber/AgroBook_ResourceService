@@ -8,13 +8,14 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class ExplotacionMedidaPreventivaCultural {
 	// SIEX -> Catálogos -> Clasificacíon de la explotación -> CLASIFICACION_EXPLOTACION.csv
 	
 	@Id
-	private byte id;
+	private Short id;
 
 	@Column(nullable = false)
 	private String descripcion;

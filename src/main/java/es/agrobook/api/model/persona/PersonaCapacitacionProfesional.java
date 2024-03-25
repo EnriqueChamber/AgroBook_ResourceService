@@ -8,13 +8,14 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class PersonaCapacitacionProfesional {
 	// SIEX -> Catálogos -> Capacitacion Profesional -> CAPACITACION_PROFESIONAL.csv
 	
 	@Id
-	private byte id;
+	private Short id;
 
 	@Column(nullable = false)
 	private String descripcion;

@@ -9,12 +9,13 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class RegimenTenencia {
 	
 	@Id
-	private byte id;
+	private Short id;
 
 	@Column(nullable = false)
 	private String descripcion;
@@ -27,9 +28,6 @@ public class RegimenTenencia {
 
 	@OneToMany(mappedBy = "regimenTenencia")
 	private Set<Superficie> superficies;
-
-	@OneToMany(mappedBy = "regimenTenencia")
-	private Set<Explotacion> explotaciones;
 
 	/*
 	

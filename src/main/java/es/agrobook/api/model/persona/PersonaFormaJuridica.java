@@ -6,7 +6,8 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class PersonaFormaJuridica {
 	// SIEX -> Catálogos -> Tipo de Titular -> TIPO_TITULAR.csv

@@ -10,7 +10,8 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class Maquina{
 
@@ -29,8 +30,17 @@ public class Maquina{
 	private String noInscripcionRoma;
 	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Rendimiento Datos de maquinaria y equipos
 
+    @Column(nullable = false)
+	private boolean ajeno;
+
+    @Column(nullable = false)
+	private float potencia;
+
 	//#endregion
 	
+
+	
+	//#region campos Cuaderno Campo Junta de Andalucia
 
     @Column(nullable = false)
 	private Date fechaAdquisicion;
@@ -40,6 +50,8 @@ public class Maquina{
 
     @ManyToOne(optional = false)
 	private Explotacion explotacion;
+
+	//#endregion
 
 
 	// Entidades enlazadas

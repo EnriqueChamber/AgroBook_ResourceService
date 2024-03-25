@@ -12,7 +12,8 @@ import lombok.*;
 @IdClass(PersonaPersona.PersonaPersonaId.class)
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class PersonaPersona implements Serializable {
 
@@ -36,6 +37,8 @@ public class PersonaPersona implements Serializable {
 
     @NoArgsConstructor
     @AllArgsConstructor
+@Getter
+@Setter
     @Data
     @Builder
     public static class PersonaPersonaId {

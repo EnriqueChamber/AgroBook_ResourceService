@@ -4,19 +4,22 @@ import java.sql.Date;
 import java.util.Set;
 
 import es.agrobook.api.model.RendimientoEconomico;
+import es.agrobook.api.model.actividad.riego.RiegoComunidadRegantes;
 import es.agrobook.api.model.catastro.CausaBaja;
 import es.agrobook.api.model.catastro.Edificacion;
 import es.agrobook.api.model.location.Municipio;
+import es.agrobook.api.model.location.ParcelaSigpac;
 import es.agrobook.api.model.maquina.Maquina;
 import es.agrobook.api.model.persona.PersonaContacto;
-import es.agrobook.api.model.riego.RiegoComunidadRegantes;
+import es.agrobook.api.model.persona.PersonaExplotacion;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class Explotacion {
 
@@ -26,6 +29,11 @@ public class Explotacion {
 
 	@Column(nullable = false)
 	private String nombre;
+
+    @ManyToMany
+	private Set<ParcelaSigpac> parcelasSigpac;
+
+
 
 	//#region campos SIEX
 
@@ -95,7 +103,7 @@ public class Explotacion {
 	// Excel -> Descripción: Fecha en que una explotación empieza a tener una clasificación concreta
 	// Aclaración: 
 
-	@Column(nullable = true)
+	@ManyToOne(optional = true)
 	private RiegoComunidadRegantes comunidadRegantes;
 	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> 1. Datos generales de la explotación -> Datos generales de la explotación -> 8. Comunidades de usuarios de agua (según catálogo)
 	// Excel -> Descripción: Indica el nombre de la comunidad de regantes según catálogo SIEX correspondiente (multirregistro)
@@ -129,7 +137,7 @@ public class Explotacion {
 	// Excel -> Descripción: 
 	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> Actividad Secundaria ligada a la actividad agraria
 
-	@OneToMany
+	@OneToMany(mappedBy = "explotacion")
 	private Set<RendimientoEconomico> rendimientosEconomicos;  
 	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> 
 	// Aclaración: 
@@ -156,6 +164,7 @@ public class Explotacion {
 	//#endregion
 
 	
+
 	//#region campos Cuaderno Campo Junta de Andalucia
 
 	@Column(nullable = true)
@@ -171,5 +180,11 @@ public class Explotacion {
 	private PersonaContacto contacto;
 
 	//#endregion
+
+	
+
+	
+    @OneToMany(mappedBy = "explotacion")
+	private Set<PersonaExplotacion> personasExplotacion;
 
 }
