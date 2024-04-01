@@ -22,7 +22,7 @@ public class IndicacionGeograficaClase {
 	private IndicacionGeograficaCategoria categoria;
 
     @Column(nullable = false)
-	private String clase;
+	private String descripcion;
 
 
 	// Entidades enlazadas

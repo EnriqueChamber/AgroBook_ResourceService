@@ -4,6 +4,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import es.agrobook.api.model.persona.Persona;
@@ -54,7 +56,8 @@ public class PersonaExplotacionService {
     }
 
     public Set<Persona> obtenerPersonasDeExplotacion2(Explotacion explotacion) {
-        return personaRepository.findByPersonaExplotaciones_Explotacion(explotacion);
+		Pageable firstPageWithTwoElements = PageRequest.of(0, 2);
+        return personaRepository.findByPersonaExplotaciones_Explotacion(explotacion, firstPageWithTwoElements);
     }
 
 

@@ -3,7 +3,6 @@ package es.agrobook.api.model.explotacion;
 import java.sql.Date;
 import java.util.Set;
 
-import es.agrobook.api.model.RendimientoEconomico;
 import es.agrobook.api.model.actividad.riego.RiegoComunidadRegantes;
 import es.agrobook.api.model.catastro.CausaBaja;
 import es.agrobook.api.model.catastro.Edificacion;

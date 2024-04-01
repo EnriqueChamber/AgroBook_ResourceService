@@ -51,7 +51,7 @@ public class Superficie {
 	// Reemplazable posteriormente por Persona
 
     @Column(nullable = false)
-	private float superficie;
+	private float superficieDgc;
 
     @Column(nullable = false)
 	private String geometría;

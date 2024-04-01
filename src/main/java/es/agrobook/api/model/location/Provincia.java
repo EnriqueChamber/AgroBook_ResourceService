@@ -2,6 +2,7 @@ package es.agrobook.api.model.location;
 
 import java.util.Set;
 
+import es.agrobook.api.model.cultivo.DenominacionOrigen;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,6 +28,9 @@ public class Provincia {
 
 	@OneToMany(mappedBy = "provincia")
 	private Set<Municipio> municipios;
+	
+    @ManyToMany(mappedBy = "provincias")
+    private Set<DenominacionOrigen> denominacionesOrigen;
 	
 
 	/*

@@ -16,7 +16,7 @@ public class AbonadoMetodoAplicacion {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Short id;
 	
 	@Column(nullable = false)
 	private String descripcion;

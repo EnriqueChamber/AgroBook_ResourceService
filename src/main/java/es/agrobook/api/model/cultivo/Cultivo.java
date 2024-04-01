@@ -46,8 +46,9 @@ public class Cultivo{
 	@ManyToOne(optional = true)
 	private Persona certificadorDenominacionOrigen; 
 
-	@Column(nullable = false)
-	private String codigoSiex;  
+	/*@Column(nullable = false)
+	private String codigoSiex;*/
+	// Cultivo.Especie.CódigoSIEX
 	// SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies (No existe Catálogo)
 
 	// SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies -> Datos de Cultivos -> Variedad Especie y Tipo

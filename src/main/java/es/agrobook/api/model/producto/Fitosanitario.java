@@ -11,10 +11,10 @@ import lombok.*;
 public class Fitosanitario extends Producto {
 
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private FitosanitarioTipo tipo; 
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private FitosanitarioClasificacion clasificacion; 
 
 	@Column(nullable =  true)

@@ -30,10 +30,10 @@ public class ExplotacionClasificacion {
 	
 	Código SIEX	Descripción
 	2	Prioritaria
-	3	Titularidad Compartida
-	4	Cotitularidad
+	3	Titularidad Compartida 							Relaciones Explotacion-Persona
+	4	Cotitularidad 									Relaciones Explotacion-Persona
 	5	Preferentes
-	6	Ocio y Autoconsumo
+	6	Ocio y Autoconsumo 								Explotación Ocio y Autoconsumo Check
 	7	Singulares
 
 

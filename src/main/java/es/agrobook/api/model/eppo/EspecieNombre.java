@@ -1,4 +1,4 @@
-package es.agrobook.api.model.especie;
+package es.agrobook.api.model.eppo;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,16 +15,16 @@ public class EspecieNombre {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@ManyToOne(optional = false)
-	private Especie especie;
-
-	@Column(nullable = false)
+	@Column(name = "nombre", columnDefinition = "VARCHAR(255) NOT NULL, FULLTEXT INDEX nombreFulltext (nombre)")
 	private String nombre;
 
-
-
+	@Column(nullable = false)
+	private Boolean prefered;
 
 
 	// Entidades enlazadas
+
+	@ManyToOne(optional = false)
+	private Especie especie;
 
 }

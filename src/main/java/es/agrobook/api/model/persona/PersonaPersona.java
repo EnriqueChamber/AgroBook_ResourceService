@@ -37,8 +37,8 @@ public class PersonaPersona implements Serializable {
 
     @NoArgsConstructor
     @AllArgsConstructor
-@Getter
-@Setter
+    @Getter
+    @Setter
     @Data
     @Builder
     public static class PersonaPersonaId {

@@ -1,6 +1,6 @@
 package es.agrobook.api.model.producto;
 
-import es.agrobook.api.model.especie.Especie;
+import es.agrobook.api.model.eppo.Especie;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ProductoVegetal extends Producto {
+public class ProductoBiologico extends Producto {
 
 
 	@ManyToOne(optional = false)

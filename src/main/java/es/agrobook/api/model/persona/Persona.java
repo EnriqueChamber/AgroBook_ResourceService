@@ -2,7 +2,7 @@ package es.agrobook.api.model.persona;
 
 import java.util.*;
 
-import es.agrobook.api.model.RendimientoEconomico;
+import es.agrobook.api.model.explotacion.RendimientoEconomico;
 import es.agrobook.api.model.location.Municipio;
 import jakarta.persistence.*;
 import lombok.*;

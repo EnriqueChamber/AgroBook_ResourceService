@@ -16,7 +16,7 @@ public class Pais {
 	@Id
 	private int id;
 
-	@Column(nullable = false, length = 4)
+	@Column(nullable = true, length = 4)
 	private String codigo;
 
 	@Column(nullable = false)

@@ -24,7 +24,7 @@ public class ProductoUso{
 	private String noLote; // SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies -> Datos adicionales de Cultivos
 	
     @Column(nullable = false)
-	private float cantidad; // Dosis, Semillas, Kg de Semillas...
+	private float cantidad; // Dosis, Semillas, Kg de Semillas, Árboles...
 	
     /*@Column(nullable = false)
 	private UnidadMedida unidadMedida;*/

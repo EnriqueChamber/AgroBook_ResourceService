@@ -34,9 +34,6 @@ public class Municipio {
 	
 
 	// Entidades enlazadas
-	
-    @ManyToMany(mappedBy = "municipios")
-    private Set<DenominacionOrigen> denominacionesOrigen;
 
 	@OneToMany(mappedBy = "municipio")
 	private Set<Explotacion> explotaciones;

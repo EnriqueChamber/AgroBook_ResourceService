@@ -11,13 +11,17 @@ import es.agrobook.api.model.actividad.colocacion.CoberturaTipo;
 import es.agrobook.api.model.actividad.cosecha.CosechaDestino;
 import es.agrobook.api.model.actividad.cosecha.CosechaDestinoRestos;
 import es.agrobook.api.model.actividad.riego.RiegoBuenasPracticas;
+import es.agrobook.api.model.actividad.tratamiento.TratamientoJustificacion;
 import es.agrobook.api.model.catastro.Edificacion;
 import es.agrobook.api.model.catastro.Superficie;
 import es.agrobook.api.model.enums.ActividadTipo;
+import es.agrobook.api.model.eppo.Especie;
 import es.agrobook.api.model.maquina.MaquinaUso;
 import es.agrobook.api.model.persona.Persona;
+import es.agrobook.api.model.producto.ProductoBiologico;
 import es.agrobook.api.model.producto.ProductoUso;
 import es.agrobook.api.model.producto.ProductoVegetal;
+import es.agrobook.api.model.producto.ProductoVegetalEstadoFenologico;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,8 +35,14 @@ public class Actividad{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
+
+	@Column(nullable = true)
+	private String nombre;
+
+	@Column(nullable = true)
+	private String observaciones;
 	
     @Enumerated(EnumType.STRING)
 	@ElementCollection(targetClass = ActividadTipo.class)
@@ -44,6 +54,9 @@ public class Actividad{
 
 	@Column(nullable = true)
 	private Date fechafin;
+
+	@Column(nullable = true)
+	private Float superficiePersonalizada;
 
 	@ManyToOne(optional = true)
 	private Persona realizador; // Aplicador, 
@@ -63,7 +76,10 @@ public class Actividad{
 	private ProductoUso colocacionProductoUso; // Producto genérico en caso de ser cubierta
 
 	@Column(nullable = true)
-	private String marcoPlantacion;
+	private Float anchoPlantacion; // marco plantación -> ancho / anchura Cubierta
+
+	@Column(nullable = true)
+	private Float largoPlantacion; // marco plantación -> largo / anchura libre Cubierta
 
 	@ManyToOne(optional = true)
 	private CoberturaTipo coberturaTipo; // Producto genérico en caso de ser cubierta
@@ -85,6 +101,9 @@ public class Actividad{
 	@ManyToOne(optional = true)
 	private CosechaDestinoRestos destinoCosechaRestos;
 
+	@Column(nullable = true)
+	private Boolean gestionSostenibleInsumos;
+
 	//#endregion
 
 
@@ -97,15 +116,15 @@ public class Actividad{
 	// Contador de sistema de riego asociado a CultivoCampaña
 
 	@Column(nullable = true)
-	private float riegoCantidad;
+	private Float riegoCantidad;
 
 	@Column(nullable = true)
-	private float nNitricoEnAgua;
+	private Float nNitricoEnAgua;
 
 	@Column(nullable = true)
-	private float p2o5EnAgua;
+	private Float p2o5EnAgua;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private RiegoBuenasPracticas riegoBuenasPracticas;
 	
 	//#endregion
@@ -117,17 +136,20 @@ public class Actividad{
 	@ManyToOne(optional = true)
 	private ProductoUso abonadoProductoUso;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private AbonadoBuenasPracticas abonadoBuenasPracticas;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private AbonadoMetodoAplicacion abonadoMetodoAplicacion;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private AbonadoPlan abonadoPlan;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private AbonadoTipo abonadoTipo;
+
+	@Column(nullable = true)
+	private Boolean docAplLodosDepuradora;
 
 	//#endregion
 
@@ -138,6 +160,15 @@ public class Actividad{
 	@ManyToOne(optional = true)
 	private ProductoUso tratamientoProductoUso;
 
+	@ManyToMany
+	private Set<Especie> problematicas;
+
+	@ManyToOne(optional = true)
+	private TratamientoJustificacion tratamientoJustificacion;
+
+	@ManyToOne(optional = true)
+	private ProductoVegetalEstadoFenologico estadoFenologico;
+
 	//#endregion
 
 
@@ -145,7 +176,7 @@ public class Actividad{
 	//#region Entidades sobre las que se realiza la Actividad
 
 	@ManyToOne(optional = true)
-	private ProductoVegetal productoVegetal;
+	private ProductoBiologico productoBiologico;
 
 	@ManyToOne(optional = true)
 	private Superficie superficie;

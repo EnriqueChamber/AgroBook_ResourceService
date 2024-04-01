@@ -15,7 +15,7 @@ public class Abono extends Producto {
 	private AbonoTipo tipo; 
 
 	@Column(nullable = true)
-	private int codigoFertilizanteSiex;
+	private Integer codigoFertilizanteSiex;
 
 	
 

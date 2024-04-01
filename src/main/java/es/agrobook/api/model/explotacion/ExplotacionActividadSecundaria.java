@@ -2,7 +2,6 @@ package es.agrobook.api.model.explotacion;
 
 import java.util.Set;
 
-import es.agrobook.api.model.RendimientoEconomico;
 import jakarta.persistence.*;
 import lombok.*;
 

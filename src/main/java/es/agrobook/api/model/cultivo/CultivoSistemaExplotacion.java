@@ -18,7 +18,7 @@ public class CultivoSistemaExplotacion {
 	private String codigo;
 
     @Column(nullable = false)
-	private String sistemaExplotacion;
+	private String descripcion;
 
 
 	// Entidades enlazadas

@@ -27,7 +27,7 @@ public class ProductoVegetalEstadoFenologico {
 	// Dependientes
 
 	@OneToMany(mappedBy = "estadoFenologico")
-	private Set<ProductoVegetal> productosVegetales;
+	private Set<ProductoBiologico> productosBiologicos;
 
 	@OneToMany(mappedBy = "estadoFenologico")
 	private Set<Cultivo> cultivos;

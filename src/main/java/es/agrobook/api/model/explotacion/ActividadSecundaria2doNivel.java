@@ -32,8 +32,8 @@ public class ActividadSecundaria2doNivel {
 
 	@NoArgsConstructor
     @AllArgsConstructor
-@Getter
-@Setter
+	@Getter
+	@Setter
     @Data
     @Builder
     public static class ActividadSecundaria2doNivelId {

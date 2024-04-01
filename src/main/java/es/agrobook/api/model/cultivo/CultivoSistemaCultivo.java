@@ -14,7 +14,7 @@ import lombok.*;
 public class CultivoSistemaCultivo {
 
 	@Id
-	private Short codigo;
+	private Short id;
 
     @Column(nullable = false)
 	private String descripcion;

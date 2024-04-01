@@ -1,7 +1,5 @@
-package es.agrobook.api.model;
+package es.agrobook.api.model.explotacion;
 
-import es.agrobook.api.model.explotacion.Explotacion;
-import es.agrobook.api.model.explotacion.ExplotacionActividadSecundaria;
 import es.agrobook.api.model.persona.Persona;
 import jakarta.persistence.*;
 import lombok.*;

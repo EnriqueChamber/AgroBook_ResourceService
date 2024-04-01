@@ -16,7 +16,7 @@ public class ComunidadAutonoma {
 	@Id
 	private Short idCatastro;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Short idINE;
 
 	@Column(nullable = false)

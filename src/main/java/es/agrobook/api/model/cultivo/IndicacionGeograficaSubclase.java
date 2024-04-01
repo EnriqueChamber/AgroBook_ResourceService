@@ -21,7 +21,7 @@ public class IndicacionGeograficaSubclase {
 	private IndicacionGeograficaClase clase;
 
     @Column(nullable = false)
-	private String subclase;
+	private String descripcion;
 
 
 	// Entidades enlazadas
