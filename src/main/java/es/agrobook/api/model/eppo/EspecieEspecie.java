@@ -1,7 +1,6 @@
 package es.agrobook.api.model.eppo;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import es.agrobook.api.model.enums.EppoRelacion;
 import jakarta.persistence.*;
@@ -38,8 +37,8 @@ public class EspecieEspecie implements Serializable {
     @Data
     @Builder
     public static class EspecieEspecieId {
-        private long persona;
-        private long personaRef;
+        private long especie;
+        private long especiePadre;
         private EppoRelacion relacion;
 
     }

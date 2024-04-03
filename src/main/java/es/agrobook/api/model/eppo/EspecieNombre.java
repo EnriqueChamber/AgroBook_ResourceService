@@ -1,5 +1,6 @@
 package es.agrobook.api.model.eppo;
 
+import es.agrobook.api.model.enums.EppoLanguage;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "especie_id", "nombre" }) })
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "especie_id", "nombre", "eppo_language" }) })
 public class EspecieNombre {
 
 	@Id
@@ -19,7 +20,11 @@ public class EspecieNombre {
 	private String nombre;
 
 	@Column(nullable = false)
-	private Boolean prefered;
+	private Boolean preferred;
+
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private EppoLanguage eppoLanguage;
 
 
 	// Entidades enlazadas

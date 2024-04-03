@@ -1,5 +1,6 @@
 package es.agrobook.api.service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -55,7 +56,7 @@ public class PersonaExplotacionService {
         return personaExplotacionRepository.findByExplotacion(explotacion).stream().collect(Collectors.toSet());
     }
 
-    public Set<Persona> obtenerPersonasDeExplotacion2(Explotacion explotacion) {
+    public List<Persona> obtenerPersonasDeExplotacion2(Explotacion explotacion) {
 		Pageable firstPageWithTwoElements = PageRequest.of(0, 2);
         return personaRepository.findByPersonaExplotaciones_Explotacion(explotacion, firstPageWithTwoElements);
     }

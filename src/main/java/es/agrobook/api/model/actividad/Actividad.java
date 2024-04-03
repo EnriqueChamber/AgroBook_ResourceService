@@ -20,7 +20,6 @@ import es.agrobook.api.model.maquina.MaquinaUso;
 import es.agrobook.api.model.persona.Persona;
 import es.agrobook.api.model.producto.ProductoBiologico;
 import es.agrobook.api.model.producto.ProductoUso;
-import es.agrobook.api.model.producto.ProductoVegetal;
 import es.agrobook.api.model.producto.ProductoVegetalEstadoFenologico;
 import jakarta.persistence.*;
 import lombok.*;

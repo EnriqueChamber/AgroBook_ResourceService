@@ -6,11 +6,13 @@ import org.springframework.stereotype.Repository;
 
 import es.agrobook.api.model.explotacion.Explotacion;
 import es.agrobook.api.model.persona.Persona;
+
+import java.util.List;
 import java.util.Set;
 
 
 @Repository
 public interface PersonaRepository extends JpaRepository<Persona, Long> {
 	
-	Set<Persona> findByPersonaExplotaciones_Explotacion(Explotacion explotacion, Pageable pageable);
+	List<Persona> findByPersonaExplotaciones_Explotacion(Explotacion explotacion, Pageable pageable);
 }

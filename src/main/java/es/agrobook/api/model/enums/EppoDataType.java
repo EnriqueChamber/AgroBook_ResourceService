@@ -8,6 +8,8 @@ public enum EppoDataType {
     SIT, // Grupo Taxonómico Animal
     SFT, // Grupo Taxonómico Microorganismo
     NTX, // Non Taxonomic
+    COM  // Commodity groups
+
 
     
 }
