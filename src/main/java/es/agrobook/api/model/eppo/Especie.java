@@ -40,7 +40,7 @@ public class Especie {
 	@ManyToMany(mappedBy = "problematicas")
 	private Set<Actividad> actividades;
 
-	@OneToMany(mappedBy = "variedad")
+	@OneToMany(mappedBy = "especie")
 	private Set<ProductoBiologico> productosBiologicos;
 
 }

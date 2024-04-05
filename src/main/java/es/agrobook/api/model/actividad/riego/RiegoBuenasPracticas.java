@@ -18,7 +18,7 @@ public class RiegoBuenasPracticas{
 	@Id
 	private Short id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
 	private String descripcion;
 
 

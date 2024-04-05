@@ -13,12 +13,12 @@ public class ProductoBiologico extends Producto {
 
 
 	@ManyToOne(optional = false)
-    private Especie variedad;
+    private Especie especie;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private ProductoVegetalEstadoFenologico estadoFenologico; 
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private ProductoVegetalTipo tipo; 
 
 

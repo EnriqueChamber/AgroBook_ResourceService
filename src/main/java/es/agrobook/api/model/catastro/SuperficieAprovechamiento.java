@@ -20,7 +20,7 @@ public class SuperficieAprovechamiento {
     @Column(nullable = false)
 	private String aprovechamiento;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
 	private String descripcion;
 
 

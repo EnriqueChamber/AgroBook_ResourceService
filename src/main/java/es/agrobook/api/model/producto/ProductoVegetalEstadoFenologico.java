@@ -20,7 +20,7 @@ public class ProductoVegetalEstadoFenologico {
     @Column(nullable = false, unique = true)
 	private String nombre;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
 	private String descripcion;
 
 

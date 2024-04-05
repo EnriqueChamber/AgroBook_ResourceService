@@ -2,6 +2,8 @@ package es.agrobook.api.model.persona;
 
 import java.util.*;
 
+import es.agrobook.api.model.enums.PersonaGenero;
+import es.agrobook.api.model.enums.PersonaRegimenMatrimonial;
 import es.agrobook.api.model.explotacion.RendimientoEconomico;
 import es.agrobook.api.model.location.Municipio;
 import jakarta.persistence.*;
@@ -21,7 +23,7 @@ public class Persona {
 
 	//#region campos SIEX
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String nif;
 	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> 2. Datos del titular -> Datos personales del titular -> 1. NIF del titular
 	// Excel -> Descripción: Número de documento de identificación fiscal del titular de la explotación
@@ -61,19 +63,20 @@ public class Persona {
 	// Excel -> Descripción: Segundo apellido del representante legal de la explotación 
 	// Aclaración: 
 
-	@ManyToOne(optional = true)
+    @Enumerated(EnumType.STRING)
+	@Column(nullable = true)
 	private PersonaGenero genero;
 	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> 2. Datos del titular -> Datos personales del titular -> 5. Género
 	// Excel -> Descripción: Géenro del titular de la explotación, en caso de ser persona física
 	// Aclaración: 
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Date fechaNacimiento;
 	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> 2. Datos del titular -> Datos personales del titular -> 6. Fecha de nacimiento
 	// Excel -> Descripción: Fecha de nacimiento del titular de la explotación
 	// Aclaración: 
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String direccion;
 	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> 2. Datos del titular -> Datos personales del titular -> 7. Direccion completa
 	// Excel -> Descripción: Domicilio fiscal del titular de la explotación. Para personas físicas que no desarrollen su actividad por cuenta propia: en este caso, sería la residencia habitual.Para Autónomos: se trataría también de la residencia habitual o de una dirección donde gestionen las actividades del negocio y su relación con Hacienda.Para Empresas: es la dirección donde se gestiona la actividad económica, que puede coincidir (o no) con el domicilio social.
@@ -81,7 +84,7 @@ public class Persona {
 	// Excel -> Descripción: Domicilio del representante legal de la explotación 
 	// Aclaración: PTE REVISAR. Posibilidad de que una misma persona tenga registrada varias direcciones.
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private Municipio municipio;
 	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> 2. Datos del titular -> Datos personales del titular -> 8. Provincia (listado INE)
 	// Excel -> Descripción: Provincia del domicilio del titular de la explotación. En función del listado INE
@@ -97,7 +100,7 @@ public class Persona {
 	// Excel -> Descripción: País de residencia del representante legal de la explotación
 	// Aclaración: 
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private int codigoPostal;
 	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> 2. Datos del titular -> Datos personales del titular -> 10. Código Postal
 	// Excel -> Descripción: Código postal del domicilio del titular de la explotación
@@ -105,7 +108,7 @@ public class Persona {
 	// Excel -> Descripción: Código postal del representante legal de la explotación
 	// Aclaración: 
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private PersonaContacto contacto;
 	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> 2. Datos del titular -> Datos personales del titular -> 12. Teléfono
 	// Excel -> Descripción: Número de teléfono del titular de la explotación
@@ -129,7 +132,8 @@ public class Persona {
 	// Excel -> Descripción: Modalidad legal de la empresa agraria según catálogo SIEX correspondiente.
 	// Aclaración: 
 
-	@ManyToOne(optional = true)
+    @Enumerated(EnumType.STRING)
+	@Column(nullable = true)
 	private PersonaRegimenMatrimonial regimenMatrimonial; 
 	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> 2. Datos del titular -> Datos personales del cónyuge -> 20. Régimen matrimonial
 	// Excel -> Descripción: Se deberá indicar si el titular está casado en régimen de gananciales, de separación de bienes o de participación 
@@ -141,7 +145,7 @@ public class Persona {
 	// Aclaración: 
 	// Excel -> Descripción: 
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String noInscripcionRopveg; // SIEX -> Contenido REA -> INFORMACION POR SUPERFICIES -> Datos de superficies -> Datos adicionales de Cultivos
 	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> 
 	// Aclaración: 
@@ -149,7 +153,7 @@ public class Persona {
 
 	//#endregion
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String noInscripcionRopo;
 	// SIEX -> Contenido REA -> INFORMACION POR EXPLOTACION -> 
 	// Aclaración: 
@@ -166,7 +170,7 @@ public class Persona {
 	@ManyToOne(optional = true)
 	private PersonaTipoAsociacion tipoAsociacion;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String codigoSiex;
 
 

@@ -19,16 +19,16 @@ public class RiegoComunidadRegantes {
 	@ManyToOne(optional = false)
 	private Persona persona;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private RiegoOrigenAgua origenAgua;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private float caudalMaximoInstantaneo;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private float volumenMaximoAnual;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private float superficieDerechoRiego;
 
 	@Column(nullable = false)
