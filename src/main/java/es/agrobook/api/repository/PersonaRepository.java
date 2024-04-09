@@ -8,7 +8,6 @@ import es.agrobook.api.model.explotacion.Explotacion;
 import es.agrobook.api.model.persona.Persona;
 
 import java.util.List;
-import java.util.Set;
 
 
 @Repository
