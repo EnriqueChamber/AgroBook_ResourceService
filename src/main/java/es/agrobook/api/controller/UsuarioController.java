@@ -42,18 +42,6 @@ public class UsuarioController {
         }
     }
 
-
-    @GetMapping("/usuario")
-    public EntityModel<Object> getUsuario2() {
-        try{
-            Usuario usuarioRes = usuarioService.getLoggedInUser();
-            return ResponseEntity.ok(usuarioRes);
-        }
-        catch(Exception ex){
-            return AgroBookApplication.handleControllerException(ex);
-        }
-    }
-
     @PutMapping("/usuario/registrar")
     public ResponseEntity<Object> registrarUsuario(@RequestBody Usuario usuario) {
         try{
